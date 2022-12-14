@@ -15,7 +15,7 @@ class LevelFixtures extends Fixture
     ];
 
     public static int $levelIndex = 0;
-    public function load (ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         foreach (self::LEVELLIST as $key => $levelName) {
             $level = new Level();
@@ -26,6 +26,5 @@ class LevelFixtures extends Fixture
         }
 
         $manager->flush();
-
     }
 }
