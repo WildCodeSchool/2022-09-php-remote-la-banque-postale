@@ -14,19 +14,20 @@ class TutorielFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-        // for ($j = 0; $j < CategoryFixtures::$categoryIndex; $j++) {
-        for ($i = 0; $i < 152; $i++) {
-            $tutoriel = new Tutoriel();
-            $tutoriel->setTitle('Fiche' . $faker->title());
-            $tutoriel->setDescription($faker->paragraphs(1, true));
-            $tutoriel->setLevel($this->getReference('level_' .
-            $faker->numberBetween(0, LevelFixtures::$levelIndex - 1)));
-            // $tutoriel->setCategory($this->getReference('category_' . $j));
-            $manager->persist($tutoriel);
-            $this->addReference('tutoriel_' . self::$tutorielIndex, $tutoriel);
-            self::$tutorielIndex++;
+        for ($j = 1; $j < CategoryFixtures::$categoryIndex; $j++) {
+            for ($i = 0; $i < 13; $i++) {
+                $tutoriel = new Tutoriel();
+                $tutoriel->setTitle('Fiche' . $faker->title());
+                $tutoriel->setDescription($faker->paragraphs(1, true));
+                $tutoriel->setContent($faker->paragraphs(5, true));
+                $tutoriel->setLevel($this->getReference('level_' .
+                    $faker->numberBetween(0, LevelFixtures::$levelIndex - 1)));
+                $tutoriel->setCategory($this->getReference('category_' . $j));
+                $manager->persist($tutoriel);
+                $this->addReference('tutoriel_' . self::$tutorielIndex, $tutoriel);
+                self::$tutorielIndex++;
+            }
         }
-        // }
 
         $manager->flush();
     }

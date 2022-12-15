@@ -2,13 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Level;
 use App\Entity\Category;
+use App\Entity\Tutoriel;
 use App\Form\CategoryType;
+use Doctrine\ORM\Mapping\Entity;
 use App\Repository\CategoryRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\LevelRepository;
+use App\Repository\TutorielRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/category')]
 class CategoryController extends AbstractController
@@ -40,13 +45,30 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
-    public function show(Category $category): Response
-    {
-        return $this->render('category/show.html.twig', [
-            'category' => $category,
+    #[Route('/{categoryId}/', methods: ['GET'], name: 'category_tutoriel_show')]
+    public function show(
+        int $categoryId,
+        CategoryRepository $categoryRepository,
+        TutorielRepository $tutorielRepository,
+        LevelRepository $levelRepository
+    ): Response {
+        $category = $categoryRepository->findOneBy(['id' => $categoryId]);
+
+        if (!$category) {
+            throw $this->createNotFoundException(
+                'No category with id : ' . $categoryId . ' found in program\'s table.'
+            );
+        }
+        $tutoriel = $tutorielRepository->findBy(array('category' => $category));
+        $level = $levelRepository->findAll();
+
+        return $this->render('category/tutoriel.html.twig', [
+            'categories' => $category,
+            'tutoriels' => $tutoriel,
+            'levels' => $level,
         ]);
     }
+
 
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
