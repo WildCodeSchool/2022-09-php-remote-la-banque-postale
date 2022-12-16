@@ -1,25 +1,39 @@
 <nav class="mainnav navbar navbar-expand-lg">
-  <div class="container-fluid">
+	<div class="container-fluid">
 
-    <a class="navbar-brand" href="#">La Ligne Bleue</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Favoris</a>
-        </li>
-        
-        
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Rechercher un tutoriel" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Rechercher</button>
-      </form>
-    </div>
-  </div>
+		<a class="logonavbar navbar-brand fs-2 ms-2 me-5" href="#">La Ligne Bleue</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="#"><img class="w-50 ms-2" src="{{ asset('build/images/home.png') }}" alt="Home"></a>
+
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#"><img class="w-50" src="{{ asset('build/images/star.png') }}" alt="Favorite"></a>
+
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#"><img class="w-50" src="{{ asset('build/images/carres.png') }}" alt="Tuto"></a>
+				</li>
+			</ul>
+			<form class="d-flex " role="search">
+				<input class="form-control me-2" type="search" placeholder="Rechercher un tutoriel" aria-label="Search">
+				<button class="btn btn-outline-light" type="submit">Rechercher</button>
+			</form>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="#"><img class="w-50" src="{{ asset('build/images/user.png') }}" alt="User"></a>
+
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><img class="w-50" src="{{ asset('build/images/sign-out.png') }}" alt="SignOut"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </nav>

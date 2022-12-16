@@ -7,10 +7,16 @@
     color: white;
 }
 
-.nav-link:active a {
+
+.nav-link:hover {
     color: white;
+    filter: drop-shadow(0 0 0.75rem white);
 }
 
-.navbar-brand {
+.logonavbar {
 color: white;
+}
+
+.logonavbar:hover {
+    color: #FFC905;
 }
