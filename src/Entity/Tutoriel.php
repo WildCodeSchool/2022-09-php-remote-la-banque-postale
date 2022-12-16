@@ -40,6 +40,9 @@ class Tutoriel
     #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Favori::class)]
     private Collection $favoris;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $content = null;
+
 
     public function __construct()
     {
@@ -218,6 +221,18 @@ class Tutoriel
                 $favori->setTutoriel(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }
