@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Tutoriel;
 use App\Form\TutorielType;
+use App\Repository\LevelRepository;
 use App\Repository\TutorielRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class TutorielController extends AbstractController
 {
     #[Route('/', name: 'app_tutoriel_index', methods: ['GET'])]
-    public function index(TutorielRepository $tutorielRepository): Response
+    public function index(TutorielRepository $tutorielRepository, LevelRepository $levelRepository): Response
     {
         return $this->render('tutoriel/index.html.twig', [
             'tutoriels' => $tutorielRepository->findAll(),
+            'levels' => $levelRepository->findAll()
         ]);
     }
 

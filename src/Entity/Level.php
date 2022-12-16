@@ -16,7 +16,7 @@ class Level
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $rank = null;
+    private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'level', targetEntity: Tutoriel::class)]
     private Collection $tutoriels;
@@ -31,14 +31,14 @@ class Level
         return $this->id;
     }
 
-    public function getRank(): ?string
+    public function getName(): ?string
     {
-        return $this->rank;
+        return $this->name;
     }
 
-    public function setRank(string $rank): self
+    public function setName(string $name): self
     {
-        $this->rank = $rank;
+        $this->name = $name;
 
         return $this;
     }
