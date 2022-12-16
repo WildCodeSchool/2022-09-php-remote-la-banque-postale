@@ -1,9 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tutoriel index{% endblock %}
+{% block title %}Tutoriel index
+{% endblock %}
 
 {% block body %}
-    <h1>Tutoriel index</h1>
+
+	<h1>Tutoriel index</h1>
+
+	<a href="{{ path('app_tutoriel_new') }}">Create new</a>
+
+{% for level in levels %}
+
+<h2>Fiches de niveau {{level.name}}</h2>
 
     <table class="table">
         <thead>
@@ -11,15 +19,19 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th>Level</th>
             </tr>
         </thead>
         <tbody>
+
         {% for tutoriel in tutoriels %}
+        {% if level.name == tutoriel.level.name %}
+
             <tr>
                 <td>{{ tutoriel.id }}</td>
                 <td>{{ tutoriel.title }}</td>
                 <td>{{ tutoriel.description }}</td>
+                <td>{{ tutoriel.level.name}}</td>
                 <td>
                     <a href="{{ path('app_tutoriel_show', {'id': tutoriel.id}) }}">show</a>
                     <a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}">edit</a>
