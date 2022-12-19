@@ -14,9 +14,21 @@
 }
 
 .logonavbar {
-color: white;
+    color: white;
 }
 
 .logonavbar:hover {
     color: #FFC905;
+}
+
+@media screen and (max-width: 600px) {
+    .main nav {
+        overflow: hidden;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    .logonavbar {
+        display: none;
+    }
 }
