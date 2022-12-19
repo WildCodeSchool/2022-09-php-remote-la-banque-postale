@@ -6,13 +6,14 @@ use App\Entity\Level;
 use App\Entity\Category;
 use App\Entity\Tutoriel;
 use App\Form\CategoryType;
-use Doctrine\ORM\Mapping\Entity;
-use App\Repository\CategoryRepository;
 use App\Repository\LevelRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\TutorielRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/category')]
@@ -27,13 +28,15 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategoryRepository $categoryRepository): Response
+    public function new(Request $request, CategoryRepository $categoryRepository, SluggerInterface $slugger): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($category->getLabel());
+            $category->setSlug($slug);
             $categoryRepository->save($category, true);
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
@@ -45,29 +48,41 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/{categoryId}/', methods: ['GET'], name: 'category_tutoriel_show')]
-    public function show(
-        int $categoryId,
-        CategoryRepository $categoryRepository,
+    #[Route('/{slug}/', name: 'category_level_show')]
+    public function showLevel(
+        string $slug,
+        Category $category,
         TutorielRepository $tutorielRepository,
         LevelRepository $levelRepository
     ): Response {
-        $category = $categoryRepository->findOneBy(['id' => $categoryId]);
 
-        if (!$category) {
+        if (!$category instanceof Category) {
             throw $this->createNotFoundException(
-                'No category with id : ' . $categoryId . ' found in program\'s table.'
+                'Pas de catégorie nommée : ' . $slug . ' found in category\'s table.'
             );
         }
+
         $tutoriel = $tutorielRepository->findBy(array('category' => $category));
         $level = $levelRepository->findAll();
 
-        return $this->render('category/tutoriel.html.twig', [
-            'categories' => $category,
+        return $this->render('category/level.html.twig', [
+            'category' => $category,
             'tutoriels' => $tutoriel,
             'levels' => $level,
         ]);
     }
+
+    #[Route('/{category_slug}/tutoriel/{tutoriel_slug}', name: 'level_tutoriel_show')]
+    #[Entity('category', options: ['mapping' => ['category_slug' => 'slug']])]
+    #[Entity('tutoriel', options: ['mapping' => ['tutoriel_slug' => 'slug']])]
+    public function showTutoriel(Category $category, Tutoriel $tutoriel): Response
+    {
+        return $this->render('category/tutoriel.html.twig', [
+            'category' => $category,
+            'tutoriel' => $tutoriel,
+        ]);
+    }
+
 
 
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
