@@ -20,6 +20,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Level</th>
+            <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -37,13 +38,12 @@
                     <a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}">edit</a>
                 </td>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+            {% endif %}
         {% endfor %}
+
         </tbody>
     </table>
 
-    <a href="{{ path('app_tutoriel_new') }}">Create new</a>
+{% endfor %}
+
 {% endblock %}
