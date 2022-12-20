@@ -43,6 +43,9 @@ class Tutoriel
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
 
     public function __construct()
     {
@@ -233,6 +236,18 @@ class Tutoriel
     public function setContent(?string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
