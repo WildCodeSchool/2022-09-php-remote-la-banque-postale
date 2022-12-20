@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!
+{% endblock %}
+
+{% block nav %}
+	{% include "landing/_landingnav.html.twig" %}
+{% endblock %}
+
+
+{% block body %}
+	<div class="d-block pink-stripe-not-height">
+
+		<h1 class="mt-5">
+			Bienvenue sur Ligne bleue
+		</h1>
+		<h2 class="mt-4 fst-italic">
+			+100 tutos pour devenir autonome sur son smartphone et son ordinateur
+		</h2>
+	</div>
+
+	<div class="d-flex flex-row justify-content-center">
+		<button type="button" class="createspace btn btn-primary fs-2 mt-5">Créer son espace personnel</button>
+	</div>
+
+	<div>
+		<h3 class="mt-4 mb-4 fs-2 fst-italic d-flex flex-row justify-content-center">ou</h3>
+	</div>
+
+	<div class="logincontainer d-flex flex-column justify-content-center align-items-center p-2 gap-2">
+		<h2>Se connecter</h2>
+		{% if error %}
+			<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
+
+		<form action="{{ path('app_login') }}" method="post" class="d-flex flex-column gap-2 align-items-center w-100">
+			<div class="d-flex flex-row justify-content-end gap-2 w-100">
+				<label class="w-25" for="username">Email:</label>
+				<input class="col" type="text" id="username" name="_username" value="{{ last_username }}">
+			</div>
+
+			<div class="d-flex flex-row justify-content-end gap-2 w-100">
+				<label class="w-25" for="password">Password:</label>
+				<input class="col" type="password" id="password" name="_password">
+			</div>
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+			<button class="btn btn-primary m-1 w-50 justify-self-center" type="submit">Se connecter</button>
+		</form>
+	</div>
+
+{% endblock %}
