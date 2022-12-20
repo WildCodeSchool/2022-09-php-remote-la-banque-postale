@@ -1,35 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Category index
+{% endblock %}
+
+{% block nav %}
+	{% include "landing/_landingnav.html.twig" %}
+{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+	<h1>Bienvenue dans votre espace personnel
+		<br>
+		Quelle catégorie souhaitez-vous ?
+	</h1>
+	<div class="blocContainer">
+		{% for category in categories %}
+			<div class="blockItems">
+				<h3>{{category.label}}</h3>
+            </div>
+            {% endfor %}
+	</div>
+			{# <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
+				<div class="card-header">Header</div>
+				<div class="card-body">
+					<h5 class="card-title">{{category.label}}</h5>
+				</div> #}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.label }}</td>
-                <td>
-                    <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_category_new') }}">Create new</a>
-{% endblock %}
+		{% endblock %}

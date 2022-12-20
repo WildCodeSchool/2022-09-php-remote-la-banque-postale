@@ -1,0 +1,44 @@
+.blocContainer {
+    display: grid;
+    width: 100%;
+    height: auto;
+    max-width: 1100px;
+    width: 80%;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-rows: repeat(2, 10rem);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin-top: 5rem;
+    justify-items: center;
+    margin-left: 15%;
+    margin-right: auto;
+
+
+
+}
+
+.blockItems {
+    background-color: #ffe482;
+    border-radius: 5px;
+    width: 100%;
+    min-width: 160px;
+    min-height: 160px;
+    text-align: center;
+}
+
+
+
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+// @media screen and (max-width: 600px) {
+//     .blocContainer {
+//     grid-template-columns: repeat(auto-fill, 160px);
+// }
+// }
