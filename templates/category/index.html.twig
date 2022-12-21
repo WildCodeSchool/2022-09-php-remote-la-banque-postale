@@ -12,19 +12,17 @@
 		<br>
 		Quelle catégorie souhaitez-vous ?
 	</h1>
-    <div class="container">
-	<div class="blocContainer">
-		{% for category in categories %}
-			<div class="blockItems">
-				<h3>{{category.label}}</h3>
-            </div>
-            {% endfor %}
+	<div class="container">
+		<div class="blocContainer">
+			{% for category in categories %}
+				<a class="blockItems" href="{{path('category_level_show', {'slug': category.slug})}}">
+					<div>
+						<div>
+							<h3>{{category.label}}</h3>
+						</div>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
 	</div>
-    </div>
-			{# <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-					<h5 class="card-title">{{category.label}}</h5>
-				</div> #}
-
-		{% endblock %}
+{% endblock %}
