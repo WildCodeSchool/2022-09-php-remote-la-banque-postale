@@ -16,7 +16,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 #[IsGranted('ROLE_ADMIN')]
 class AdminTutorielController extends AbstractController
 {
-
     #[Route('/', name: 'app_tutoriel_index', methods: ['GET'])]
     public function index(TutorielRepository $tutorielRepository, LevelRepository $levelRepository): Response
     {
@@ -81,4 +80,3 @@ class AdminTutorielController extends AbstractController
         return $this->redirectToRoute('app_tutoriel_index', [], Response::HTTP_SEE_OTHER);
     }
 }
-

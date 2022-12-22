@@ -16,7 +16,7 @@
         {% for category in categories %}
             <tr>
                 <td>{{ category.id }}</td>
-                <td>{{ category.label }}</td>
+                <td><a href="{{ path('category_level_show', {'slug': category.slug}) }}">{{ category.label }}</a></td>
             </tr>
         {% else %}
             <tr>

@@ -3,12 +3,17 @@
 {% block title %}Tutoriel{% endblock %}
 
 {% block body %}
+
+    {% if is_granted("ROLE_ADMIN") %}
+    <ul>
+    <li><a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}"><button>Éditer le tutoriel</button></a></li>
+    <li><a href="{{ path('app_tutoriel_delete', {'id': tutoriel.id}) }}"> <button> Supprimer le tutoriel</button></a></li>
+    </ul>
+    {% endif %}
+
     <h1>Tutoriel {{tutoriel.title}}</h1>
 
     <p>{{ tutoriel.content }}</p>
 
-    {% if is_granted("ROLE_ADMIN") %}
-    <a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}">Éditer le tutoriel</a>
-    <a href="{{ path('app_tutoriel_delete', {'id': tutoriel.id}) }}">Supprimer le tutoriel</a>
-    {% endif %}
+
 {% endblock %}

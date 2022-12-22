@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface Admin{% endblock %}
+
+{% block body %}
+ <table class="table">
+        <thead>
+            <tr>
+                <th>Fonctionnalité</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Categories</td>
+                <td>Administer les catégories des tutoriels disponibles</td>
+                <td>
+                    <a href="{{ path('admin_app_category_index') }}">Edition</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Fiches Tutoriel</td>
+                <td>Administer les fiches tutoriels</td>
+                <td>
+                    <a href="{{ path('app_tutoriel_index') }}">Edition</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Quizz</td>
+                <td>Administer les quizz présents dans les fiches tutoriel</td>
+                <td>
+                    <a href="#">Edition</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Commentaires</td>
+                <td>Gestion des commentaires envoyés par les utilisateurs</td>
+                <td>
+                    <a href="#">Edition</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Tickets</td>
+                <td>Gestions des tickets de bugs repportés par les utilisateurs</td>
+                <td>
+                    <a href="#">Edition</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

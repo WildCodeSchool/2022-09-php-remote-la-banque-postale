@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Create new Tutoriel</h1>
 
-    {{ include('tutoriel/_form.html.twig') }}
+    {{ include('tutoriel/admintutoriel/_form.html.twig') }}
 
-    <a href="{{ path('app_tutoriel_index') }}">back to list</a>
+    <a href="{{ path('app_tutoriel_index') }}"> <button> Retour à la liste des tutoriels</button></a>
 {% endblock %}
