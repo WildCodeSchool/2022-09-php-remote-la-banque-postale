@@ -3,13 +3,16 @@
 {% block title %}Category index{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+    <h1>Administation des categories</h1>
+
+<a href="{{ path('app_category_new') }}"><button>Créer une nouvelle catégorie</button></a>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +20,11 @@
             <tr>
                 <td>{{ category.id }}</td>
                 <td>{{ category.label }}</td>
+                <td>
+                    <a href="{{ path('category_level_show', {'slug': category.slug}) }}">show</a>
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
+                    {{ include('category/admincategory/_delete_form.html.twig') }}
+                </td>
             </tr>
         {% else %}
             <tr>
@@ -25,5 +33,6 @@
         {% endfor %}
         </tbody>
     </table>
+
 
 {% endblock %}

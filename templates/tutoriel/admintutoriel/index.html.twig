@@ -5,9 +5,9 @@
 
 {% block body %}
 
-	<h1>Tutoriel index</h1>
+	<h1>Administration des tutoriels</h1>
 
-	<a href="{{ path('app_tutoriel_new') }}">Create new</a>
+<a href="{{ path('app_category_new') }}"><button>Créer un nouveau tutoriel</button></a>
 
 {% for level in levels %}
 
@@ -36,6 +36,8 @@
                 <td>
                     <a href="{{ path('app_tutoriel_show', {'id': tutoriel.id}) }}">show</a>
                     <a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}">edit</a>
+                    <br>
+                    {{ include('tutoriel/admintutoriel/_delete_form.html.twig') }}
                 </td>
             </tr>
             {% endif %}
