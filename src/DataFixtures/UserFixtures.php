@@ -47,6 +47,20 @@ class UserFixtures extends Fixture
             'pass' => 'mdp',
             'roles' => 'ROLE_USER'
         ],
+        [
+            'firstname' => 'Michel',
+            'lastname' => 'Jacquesfils',
+            'email' => 'Michel@laposte.com',
+            'pass' => 'mdp',
+            'roles' => 'ROLE_USER'
+        ],
+        [
+            'firstname' => 'Jihef',
+            'lastname' => 'Morin',
+            'email' => 'jfmorin@lafriterie.com',
+            'pass' => 'mdp',
+            'roles' => 'ROLE_USER'
+        ],
     ];
 
 

@@ -18,10 +18,13 @@ class Ticket
     private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
-    private ?Tutoriel $tutoriel = null;
-
-    #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?User $user = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $submitedAt = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $title = null;
 
     public function getId(): ?int
     {
@@ -40,18 +43,6 @@ class Ticket
         return $this;
     }
 
-    public function getTutoriel(): ?Tutoriel
-    {
-        return $this->tutoriel;
-    }
-
-    public function setTutoriel(?Tutoriel $tutoriel): self
-    {
-        $this->tutoriel = $tutoriel;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -60,6 +51,30 @@ class Ticket
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSubmitedAt(): ?\DateTimeImmutable
+    {
+        return $this->submitedAt;
+    }
+
+    public function setSubmitedAt(?\DateTimeImmutable $submitedAt): self
+    {
+        $this->submitedAt = $submitedAt;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

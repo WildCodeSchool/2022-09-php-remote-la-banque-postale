@@ -27,5 +27,12 @@
 
 
 	{% endblock %}
-	</body>
+
+
+    <footer>    {% if app.user %}
+    <a href="{{ path('app_ticket_new') }}"><button>Signaler un bug</button></a>
+	{% endif %}</footer>
+
+    </body>
+
 </html>
