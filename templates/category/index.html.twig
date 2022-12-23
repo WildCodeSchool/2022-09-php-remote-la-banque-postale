@@ -3,10 +3,6 @@
 {% block title %}Category index
 {% endblock %}
 
-{% block nav %}
-	{% include "landing/_landingnav.html.twig" %}
-{% endblock %}
-
 {% block body %}
 	<h1>Bienvenue dans votre espace personnel
 		<br>
@@ -15,11 +11,10 @@
 	<div class="container">
 		<div class="blocContainer">
 			{% for category in categories %}
-				<a class="blockItems" href="{{path('category_level_show', {'slug': category.slug})}}">
-					<div>
-						<div>
-							<h3>{{category.label}}</h3>
-						</div>
+				<a class="blockItems text-decoration-none" href="{{path('category_level_show', {'slug': category.slug})}}">
+					<div class="d-flex align-items-center flex-column h-100 justify-content-center gap-4">
+						<img class="w-25" src="{{ asset('images/' ~ category.image) }}">
+						<h3>{{category.label}}</h3>
 					</div>
 				</a>
 			{% endfor %}
