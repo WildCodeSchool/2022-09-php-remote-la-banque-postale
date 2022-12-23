@@ -2,20 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Level;
+use App\Entity\Comment;
 use App\Entity\Category;
 use App\Entity\Tutoriel;
-use App\Form\CategoryType;
+use App\Form\CommentType;
 use App\Repository\LevelRepository;
+use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\TutorielRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/category')]
 class CategoryController extends AbstractController
@@ -55,11 +54,34 @@ class CategoryController extends AbstractController
     #[Route('/{category_slug}/tutoriel/{tutoriel_slug}', name: 'level_tutoriel_show')]
     #[Entity('category', options: ['mapping' => ['category_slug' => 'slug']])]
     #[Entity('tutoriel', options: ['mapping' => ['tutoriel_slug' => 'slug']])]
-    public function showTutoriel(Category $category, Tutoriel $tutoriel): Response
-    {
+    public function showTutoriel(
+        Request $request,
+        Category $category,
+        Tutoriel $tutoriel,
+        CommentRepository $commentRepository
+    ): Response {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        $allComments = $commentRepository->findBy(
+            ['tutoriel' => $tutoriel],
+            ['postedAt' => 'DESC']
+        );
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $comment->setUser($this->getUser());
+            $comment->setTutoriel($tutoriel);
+            $commentRepository->save($comment, true);
+            $this->addFlash('success', 'Votre commentaire a été publié');
+        } else {
+            $this->addFlash('danger', 'Votre commentaire n\'a pas été publié');
+        }
         return $this->render('category/tutoriel.html.twig', [
             'category' => $category,
             'tutoriel' => $tutoriel,
+            'form' => $form->createView(),
+            'comments' => $comment,
+            'allcomments' => $allComments
         ]);
     }
 }

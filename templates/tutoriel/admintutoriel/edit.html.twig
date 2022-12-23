@@ -3,11 +3,11 @@
 {% block title %}Edit Tutoriel{% endblock %}
 
 {% block body %}
-    <h1>Edit Tutoriel</h1>
+    <h1>Éditer le tutoriel</h1>
 
-    {{ include('tutoriel/admintutoriel/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('tutoriel/admintutoriel/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_tutoriel_index') }}">back to list</a>
+    <a href="{{ path('app_tutoriel_index') }}">Retour à la liste des tutoriels</a>
 
     {{ include('tutoriel/admintutoriel/_delete_form.html.twig') }}
 {% endblock %}

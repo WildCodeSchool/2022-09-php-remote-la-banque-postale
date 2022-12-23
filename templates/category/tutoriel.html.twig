@@ -1,19 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tutoriel{% endblock %}
+{% block title %}Tutoriel
+{% endblock %}
 
 {% block body %}
 
-    {% if is_granted("ROLE_ADMIN") %}
-    <ul>
-    <li><a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}"><button>Éditer le tutoriel</button></a></li>
-    <li><a href="{{ path('app_tutoriel_delete', {'id': tutoriel.id}) }}"> <button> Supprimer le tutoriel</button></a></li>
-    </ul>
-    {% endif %}
+	{% if is_granted("ROLE_ADMIN") %}
+		<ul>
+			<li><a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}"><button>Éditer le tutoriel</button></a></li>
+			<li><a href="{{ path('app_tutoriel_delete', {'id': tutoriel.id}) }}"><button>Supprimer le tutoriel</button></a></li>
+		</ul>
+	{% endif %}
 
-    <h1>Tutoriel {{tutoriel.title}}</h1>
+	<h1>Tutoriel
+		{{tutoriel.title}}</h1>
 
-    <p>{{ tutoriel.content }}</p>
+	<p>{{ tutoriel.content }}</p>
 
+
+	<a href="{{ path('category_level_show', {'slug': category.slug}) }}">
+		<button>Revenir à la page précédente</button>
+	</a>
+
+	{% if app.user %}
+
+		<h2>Ajouter un commentaire</h2>
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<button type="submit">Ajouter un commentaire</button>
+		{{ form_end(form) }}
+	{% endif %}
+
+	{% for allcomment in allcomments %}
+
+		<div>
+			<h3>Postée par:
+				{{allcomment.user.id}} le {{allcomment.postedat.format('d/m/Y')}}</h3>
+			<div>
+				<p>{{allcomment.text}}</p>
+			</div>
+			{% if is_granted("ROLE_ADMIN") or allcomment.user == app.user %}
+				<a href="{{ path('app_comment_edit', {'id': allcomment.id}) }}">Editer</a>
+			{% endif %}
+		</div>
+	{% endfor %}
 
 {% endblock %}
