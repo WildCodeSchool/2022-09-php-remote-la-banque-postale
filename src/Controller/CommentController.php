@@ -38,6 +38,9 @@ class CommentController extends AbstractController
     {
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
+        if ($this->getUser() !== $comment->getUser()) {
+            throw $this->createAccessDeniedException('Vous n\'êtes pas l\'auteur de ce commentaire !');
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $commentRepository->save($comment, true);
