@@ -6,7 +6,7 @@
 
     {% if is_granted("ROLE_ADMIN") %}
     <ul>
-    <li><a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}"><button>Éditer le tutoriel</button></a></li>
+    <li><a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}">Éditer le tutoriel</a></li>
     <li><a href="{{ path('app_tutoriel_delete', {'id': tutoriel.id}) }}">Supprimer le tutoriel</a></li>
     </ul>
     {% endif %}
