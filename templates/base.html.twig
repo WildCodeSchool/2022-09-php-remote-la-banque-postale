@@ -18,21 +18,26 @@
 		{% endblock %}
 	</head>
 	<body>
-    {% block nav %}
-    {% include 'Include/_navbar.html.twig' %}
-    {% endblock %}
-    {% block body %}
 
 
+		{% block nav %}
+			{% include 'Include/_navbar.html.twig' %}
+		{% endblock %}
+		{% for category, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ category }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
+		{% block body %}{% endblock %}
 
-
-	{% endblock %}
-
-
-    <footer>    {% if app.user %}
-    <a href="{{ path('app_ticket_new') }}"><button>Signaler un bug</button></a>
-	{% endif %}</footer>
-
-    </body>
-
+		<footer>
+			{% if app.user %}
+				<a href="{{ path('app_ticket_new') }}">
+					<button>Signaler un bug</button>
+				</a>
+			{% endif %}
+		</footer>
+	</body>
 </html>

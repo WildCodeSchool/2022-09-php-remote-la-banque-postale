@@ -14,7 +14,7 @@ class UserFixtures extends Fixture
     public const USER_INFOS = [
         [
             'firstname' => 'Florian',
-            'lastname' => 'Florian',
+            'lastname' => 'Betin',
             'email' => 'florian@laposte.com',
             'pass' => 'mdp',
             'roles' => 'ROLE_ADMIN'
