@@ -63,25 +63,18 @@ class CategoryController extends AbstractController
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-        $allComments = $commentRepository->findBy(
-            ['tutoriel' => $tutoriel],
-            ['postedAt' => 'DESC']
-        );
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $comment->setUser($this->getUser());
+            
+            $comment->setUser($this->getUser());
             $comment->setTutoriel($tutoriel);
             $commentRepository->save($comment, true);
             $this->addFlash('success', 'Votre commentaire a été publié');
-        } else {
-            $this->addFlash('danger', 'Votre commentaire n\'a pas été publié');
         }
         return $this->render('category/tutoriel.html.twig', [
             'category' => $category,
             'tutoriel' => $tutoriel,
             'form' => $form->createView(),
-            'comments' => $comment,
-            'allcomments' => $allComments
         ]);
     }
 }
