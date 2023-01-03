@@ -27,6 +27,9 @@ class TicketController extends AbstractController
             $ticketRepository->save($ticket, true);
 
             $this->addFlash('success', 'Votre ticket a été envoyé');
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->redirectToRoute('admin_app_ticket_index', [], Response::HTTP_SEE_OTHER);
+            }
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
