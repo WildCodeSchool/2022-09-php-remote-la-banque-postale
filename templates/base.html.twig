@@ -18,6 +18,8 @@
 		{% endblock %}
 	</head>
 	<body>
+
+
 		{% block nav %}
 			{% include 'Include/_navbar.html.twig' %}
 		{% endblock %}
@@ -29,5 +31,13 @@
 			{% endfor %}
 		{% endfor %}
 		{% block body %}{% endblock %}
+
+		<footer>
+			{% if app.user %}
+				<a href="{{ path('app_ticket_new') }}">
+					<button>Signaler un bug</button>
+				</a>
+			{% endif %}
+		</footer>
 	</body>
 </html>

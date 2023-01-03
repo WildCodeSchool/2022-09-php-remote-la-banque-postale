@@ -3,6 +3,9 @@
 {% block title %}Interface Admin{% endblock %}
 
 {% block body %}
+
+<h1>Panneau d'administration des contenus</h1>
+
  <table class="table">
         <thead>
             <tr>
@@ -16,21 +19,21 @@
                 <td>Categories</td>
                 <td>Administer les catégories des tutoriels disponibles</td>
                 <td>
-                    <a href="{{ path('admin_app_category_index') }}">Edition</a>
+                    <a href="{{ path('admin_app_category_index') }}">Administer</a>
                 </td>
             </tr>
             <tr>
                 <td>Fiches Tutoriel</td>
                 <td>Administer les fiches tutoriels</td>
                 <td>
-                    <a href="{{ path('app_tutoriel_index') }}">Edition</a>
+                    <a href="{{ path('app_tutoriel_index') }}">Administer</a>
                 </td>
             </tr>
             <tr>
                 <td>Quizz</td>
                 <td>Administer les quizz présents dans les fiches tutoriel</td>
                 <td>
-                    <a href="#">Edition</a>
+                    <a href="#">Administer</a>
                 </td>
             </tr>
             <tr>
@@ -44,7 +47,14 @@
                 <td>Tickets</td>
                 <td>Gestions des tickets de bugs repportés par les utilisateurs</td>
                 <td>
-                    <a href="#">Edition</a>
+                    <a href="{{ path('admin_app_ticket_index') }}">Administer</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Utilisateurs</td>
+                <td>Gestions des utilisateurs</td>
+                <td>
+                    <a href="{{ path('app_user_index') }}">Administer</a>
                 </td>
             </tr>
         </tbody>
