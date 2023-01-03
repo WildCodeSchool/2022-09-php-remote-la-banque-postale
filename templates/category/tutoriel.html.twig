@@ -31,16 +31,16 @@
 		{{ form_end(form) }}
 	{% endif %}
 
-	{% for allcomment in allcomments %}
+	{% for comment in tutoriel.comments %}
 
 		<div>
 			<h3>Postée par:
-				{{allcomment.user.id}} le {{allcomment.postedat.format('d/m/Y')}}</h3>
+				{{comment.user.firstname }} le {{comment.postedat.format('d/m/Y')}}</h3>
 			<div>
-				<p>{{allcomment.text}}</p>
+				<p>{{comment.text}}</p>
 			</div>
-			{% if is_granted("ROLE_ADMIN") or allcomment.user == app.user %}
-				<a href="{{ path('app_comment_edit', {'id': allcomment.id}) }}">Editer</a>
+			{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
+				<a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
 			{% endif %}
 		</div>
 	{% endfor %}

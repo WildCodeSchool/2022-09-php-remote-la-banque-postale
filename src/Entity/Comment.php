@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -21,13 +23,19 @@ class Comment
     private ?Tutoriel $tutoriel = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
-    private ?User $user = null;
+    private null|User|UserInterface $user = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $postedAt = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $author = null;
+
+    public function __construct()
+    {
+        $this->postedAt = new DateTimeImmutable('now');
+    }
+
 
     public function getId(): ?int
     {
@@ -58,12 +66,12 @@ class Comment
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): null|User|UserInterface
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(null|User|UserInterface $user): self
     {
         $this->user = $user;
 
