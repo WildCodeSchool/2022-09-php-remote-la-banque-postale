@@ -23,7 +23,6 @@ class TicketFixtures extends Fixture implements DependentFixtureInterface
                 $ticket->setSubmitedAt(DateTimeImmutable::createFromMutable($faker->dateTime()));
                 $ticket->setUser($this->getReference('user_' . rand(1, 7)));
                 $manager->persist($ticket);
-                $this->addReference('comment_' . self::$ticketIndex, $ticket);
                 self::$ticketIndex++;
             }
         }

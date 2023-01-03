@@ -22,14 +22,12 @@ class TicketController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $ticket->setUser($this->getUser());
+            $ticket->setUser($this->getUser());
             $ticket->setSubmitedAt(new DateTimeImmutable());
             $ticketRepository->save($ticket, true);
 
             $this->addFlash('success', 'Votre ticket a été envoyé');
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
-        } else {
-            $this->addFlash('danger', 'Votre ticket n\'a pas été envoyé');
         }
 
         return $this->renderForm('ticket/new.html.twig', [
@@ -48,8 +46,12 @@ class TicketController extends AbstractController
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $ticketRepository->save($ticket, true);
-
-            return $this->redirectToRoute('app_ticket_index', [], Response::HTTP_SEE_OTHER);
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->redirectToRoute('admin_app_ticket_index', [], Response::HTTP_SEE_OTHER);
+            }
+            // ci-dessous, route à changer si on créer un espace user, on redirigera vers
+            // une page qui montre au user quels tickets il a rédigé
+            return $this->redirectToRoute('app_category_index');
         }
 
         return $this->renderForm('ticket/edit.html.twig', [
