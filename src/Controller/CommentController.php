@@ -21,7 +21,7 @@ class CommentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $commentRepository->save($comment, true);
-        if ($this->isGranted('ROLE_ADMIN')) {
+            if ($this->isGranted('ROLE_ADMIN')) {
                 return $this->redirectToRoute('app_comment_index', [], Response::HTTP_SEE_OTHER);
             }
             return $this->redirectToRoute('level_tutoriel_show', [

@@ -65,7 +65,6 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $comment->setUser($this->getUser());
             $comment->setTutoriel($tutoriel);
             $commentRepository->save($comment, true);
