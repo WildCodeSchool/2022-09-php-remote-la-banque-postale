@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tutoriel{% endblock %}
+{% block title %}Tutoriel
+{% endblock %}
 
 {% block body %}
 
@@ -11,9 +12,37 @@
     </ul>
     {% endif %}
 
-    <h1>Tutoriel {{tutoriel.title}}</h1>
+	<h1>Tutoriel
+		{{tutoriel.title}}</h1>
 
-    <p>{{ tutoriel.content }}</p>
+	<p>{{ tutoriel.content }}</p>
 
+
+	<a href="{{ path('category_level_show', {'slug': category.slug}) }}">
+		<button>Revenir à la page précédente</button>
+	</a>
+
+	{% if app.user %}
+
+		<h2>Ajouter un commentaire</h2>
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<button type="submit">Ajouter un commentaire</button>
+		{{ form_end(form) }}
+	{% endif %}
+
+	{% for comment in tutoriel.comments %}
+
+		<div>
+			<h3>Postée par:
+				{{comment.user.firstname}} le {{comment.postedat.format('d/m/Y')}}</h3>
+			<div>
+				<p>{{comment.text}}</p>
+			</div>
+			{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
+				<a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
+			{% endif %}
+		</div>
+	{% endfor %}
 
 {% endblock %}

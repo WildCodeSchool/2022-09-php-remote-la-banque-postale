@@ -14,7 +14,7 @@ class UserFixtures extends Fixture
     public const USER_INFOS = [
         [
             'firstname' => 'Florian',
-            'lastname' => 'Florian',
+            'lastname' => 'Betin',
             'email' => 'florian@laposte.com',
             'pass' => 'mdp',
             'roles' => 'ROLE_ADMIN'
@@ -44,6 +44,20 @@ class UserFixtures extends Fixture
             'firstname' => 'Ginette',
             'lastname' => 'Lebon',
             'email' => 'Ginette@laposte.com',
+            'pass' => 'mdp',
+            'roles' => 'ROLE_USER'
+        ],
+        [
+            'firstname' => 'Michel',
+            'lastname' => 'Jacquesfils',
+            'email' => 'Michel@laposte.com',
+            'pass' => 'mdp',
+            'roles' => 'ROLE_USER'
+        ],
+        [
+            'firstname' => 'Jihef',
+            'lastname' => 'Morin',
+            'email' => 'jfmorin@lafriterie.com',
             'pass' => 'mdp',
             'roles' => 'ROLE_USER'
         ],
