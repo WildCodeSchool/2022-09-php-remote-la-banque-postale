@@ -24,7 +24,7 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     private ?Tutoriel $tutoriel = null;
 
-    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
     private null|User|UserInterface $user = null;
 
     #[ORM\Column(nullable: true)]

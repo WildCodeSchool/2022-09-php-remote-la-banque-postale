@@ -69,6 +69,10 @@ class CategoryController extends AbstractController
             $comment->setTutoriel($tutoriel);
             $commentRepository->save($comment, true);
             $this->addFlash('success', 'Votre commentaire a été publié');
+            return $this->redirectToRoute('level_tutoriel_show', [
+                'category_slug' => $category ->getSlug(),
+                'tutoriel_slug' => $tutoriel->getSlug()
+            ], Response::HTTP_SEE_OTHER);
         }
         return $this->render('category/tutoriel.html.twig', [
             'category' => $category,
