@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <h1>Administation des categories</h1>
+
+<a href="{{ path('app_category_new') }}"><button>Créer une nouvelle catégorie</button></a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.label }}</td>
+                <td>
+                    <a href="{{ path('category_level_show', {'slug': category.slug}) }}">Voir</a>
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">Éditer</a>
+                    {{ include('category/admincategory/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

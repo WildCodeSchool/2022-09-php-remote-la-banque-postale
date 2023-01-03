@@ -6,6 +6,7 @@ use App\Entity\Tutoriel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class TutorielType extends AbstractType
 {
@@ -14,8 +15,9 @@ class TutorielType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('level')
-            ->add('category')
+            ->add('content')
+            ->add('level', null, ['choice_label' => 'name'])
+            ->add('category', null, ['choice_label' => 'label'])
         ;
     }
 
