@@ -4,11 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Category;
+use App\Entity\Question;
 use App\Entity\Tutoriel;
 use App\Form\CommentType;
+use App\Form\QuestionType;
+use App\Repository\AnswerRepository;
 use App\Repository\LevelRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\QuestionRepository;
 use App\Repository\TutorielRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,26 +62,43 @@ class CategoryController extends AbstractController
         Request $request,
         Category $category,
         Tutoriel $tutoriel,
-        CommentRepository $commentRepository
+        CommentRepository $commentRepository,
+        Question $question,
+        AnswerRepository $answerRepository,
     ): Response {
-        $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //Gestion du quizz
+        $answerId = $request->get('answer');
+        if ($answerId) {
+            $answer = $answerRepository->find($answerId);
+            if ($answer->isIscorrect()) {
+                $this->addFlash('success', 'C\'est la bonne réponse !');
+            } else {
+                $this->addFlash('danger', 'Mauvaise réponse ! Relisez bien le tutoriel ! ');
+            }
+        }
+
+        //Création et validation du formulaire des commentaires
+        $comment = new Comment();
+        $formComment = $this->createForm(CommentType::class, $comment);
+        $formComment->handleRequest($request);
+
+        if ($formComment->isSubmitted() && $formComment->isValid()) {
             $comment->setUser($this->getUser());
             $comment->setTutoriel($tutoriel);
             $commentRepository->save($comment, true);
             $this->addFlash('success', 'Votre commentaire a été publié');
             return $this->redirectToRoute('level_tutoriel_show', [
-                'category_slug' => $category ->getSlug(),
+                'category_slug' => $category->getSlug(),
                 'tutoriel_slug' => $tutoriel->getSlug()
             ], Response::HTTP_SEE_OTHER);
         }
+
+
         return $this->render('category/tutoriel.html.twig', [
             'category' => $category,
             'tutoriel' => $tutoriel,
-            'form' => $form->createView(),
+            'formComment' => $formComment->createView()
         ]);
     }
 }

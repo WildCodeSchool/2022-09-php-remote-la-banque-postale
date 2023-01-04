@@ -5,37 +5,73 @@
 
 {% block body %}
 
-    {% if is_granted("ROLE_ADMIN") %}
-    <ul>
-    <li><a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}">Éditer le tutoriel</a></li>
-    <li><a href="{{ path('app_tutoriel_delete', {'id': tutoriel.id}) }}">Supprimer le tutoriel</a></li>
-    </ul>
-    {% endif %}
+	<pre>
+    {{ dump(tutoriel) }}
+
+</pre>
+
+	{% if is_granted("ROLE_ADMIN") %}
+		<ul>
+			<li>
+				<ahref="{{path('app_tutoriel_edit',{'id':tutoriel.id})}}">Éditer le tutoriel</ahref=>
+			</li>
+			<li>
+				<ahref="{{path('app_tutoriel_delete',{'id':tutoriel.id})}}">Supprimer le tutoriel</ahref=>
+			</li>
+		</ul>
+	{% endif %}
 
 	<h1>Tutoriel
 		{{tutoriel.title}}</h1>
 
 	<p>{{ tutoriel.content }}</p>
 
+	<h2>question</h2>
 
+	<form>
+		<p>{{tutoriel.questions.0.content}}</p>
+
+		{% for answer in tutoriel.questions.0.answers %}
+			<div>
+				<input type="radio" id="answer_{{answer.id}}" name="answer" value="{{answer.id}}">
+				<label for="answer_{{answer.id}}">{{answer.content}}</label>
+			</div>
+		{% endfor %}
+
+		<div>
+			<button type="submit">Valider ma réponse</button>
+		</div>
+	</form>
+
+
+	<br>
+	<br>
 	<a href="{{ path('category_level_show', {'slug': category.slug}) }}">
 		<button>Revenir à la page précédente</button>
 	</a>
 
+	<br>
+	<br>
 	{% if app.user %}
 
 		<h2>Ajouter un commentaire</h2>
-		{{ form_start(form) }}
-		{{ form_widget(form) }}
+		{{ form_start(formComment) }}
+		{{ form_widget(formComment) }}
+		<br>
 		<button type="submit">Ajouter un commentaire</button>
-		{{ form_end(form) }}
+		<br>
+		{{ form_end(formComment) }}
 	{% endif %}
+
+	<br><br>
 
 	{% for comment in tutoriel.comments %}
 
 		<div>
 			<h3>Postée par:
-				{{comment.user.firstname}} le {{comment.postedat.format('d/m/Y')}}</h3>
+				{{comment.user.firstname}}
+				le
+				{{comment.postedat.format('d/m/Y')}}</h3>
 			<div>
 				<p>{{comment.text}}</p>
 			</div>
