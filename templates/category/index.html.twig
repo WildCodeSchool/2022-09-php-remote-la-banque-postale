@@ -1,29 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Category index
+{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td><a href="{{ path('category_level_show', {'slug': category.slug}) }}">{{ category.label }}</a></td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+	<h1>Bienvenue dans votre espace personnel
+		<br>
+		Quelle catégorie souhaitez-vous ?
+	</h1>
+	<div class="container">
+		<div class="blocContainer">
+			{% for category in categories %}
+				<a class="blockItems text-decoration-none" href="{{path('category_level_show', {'slug': category.slug})}}">
+					<div class="d-flex align-items-center flex-column h-100 justify-content-center gap-4">
+						<img class="w-25" src="{{ asset('images/' ~ category.image) }}">
+						<h3>{{category.label}}</h3>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}
