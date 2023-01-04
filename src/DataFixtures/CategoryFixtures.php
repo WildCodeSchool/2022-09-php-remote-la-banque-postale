@@ -10,17 +10,51 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class CategoryFixtures extends Fixture
 {
     public const CATEGORYLIST = [
-        'Mes Favoris',
-        'Utiliser Ligne Bleue',
-        'Utiliser mon téléphone',
-        'Aller sur Internet',
-        'Vie Courante',
-        'Me divertir',
-        'Mes mails',
-        'Communiquer',
-        'Utiliser Internet en toute sécurité',
-        'Se déplacer',
-        'Pour aller plus loin',
+        [
+            'label' => 'Mes favoris',
+            'image' => 'category1.svg',
+        ],
+        [
+            'label' => 'Utiliser Ligne Bleue',
+            'image' => 'category2.svg',
+        ],
+        [
+            'label' => 'Utiliser mon téléphone',
+            'image' => 'category3.svg'
+        ],
+        [
+            'label' => 'Aller sur Internet',
+            'image' => 'category4.svg'
+        ],
+        [
+            'label' => 'Vie Courante',
+            'image' => 'category5.svg'
+        ],
+        [
+            'label' => 'Me divertir',
+            'image' => 'category11.svg'
+        ],
+        [
+            'label' =>  'Mes mails',
+            'image' => 'category6.svg'
+        ],
+        [
+            'label' => 'Communiquer',
+            'image' => 'category7.svg'
+        ],
+        [
+            'label' =>  'Utiliser Internet en toute sécurité',
+            'image' => 'category8.svg'
+        ],
+        [
+            'label' => 'Se déplacer',
+            'image' => 'category9.svg'
+        ],
+        [
+            'label' => 'Pour aller plus loin',
+            'image' => 'category10.svg'
+        ],
+
     ];
 
     public function __construct(private SluggerInterface $slugger)
@@ -30,9 +64,10 @@ class CategoryFixtures extends Fixture
     public static int $categoryIndex = 0;
     public function load(ObjectManager $manager): void
     {
-        foreach (self::CATEGORYLIST as $key => $categoryLabel) {
+        foreach (self::CATEGORYLIST as $key => $categoryInfo) {
             $category = new Category();
-            $category->setLabel($categoryLabel);
+            $category->setLabel($categoryInfo['label']);
+            $category->setImage($categoryInfo['image']);
             $category->setSlug($this->slugger->slug($category->getLabel()));
             $manager->persist($category);
             $this->addReference('category_' . $key, $category);
