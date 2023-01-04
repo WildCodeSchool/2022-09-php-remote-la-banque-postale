@@ -18,9 +18,11 @@ class TutorielType extends AbstractType
             ->add('title')
             ->add('description', CKEditorType::class)
             ->add('level', null, ['choice_label' => 'name'])
-            ->add('category', null, ['choice_label' => 'label']
-            )
-        ;
+            ->add(
+                'category',
+                null,
+                ['choice_label' => 'label']
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
