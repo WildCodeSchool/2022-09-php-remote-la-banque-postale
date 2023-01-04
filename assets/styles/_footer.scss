@@ -1,4 +1,29 @@
 footer {
-    font-weight: bold;
-}
+    padding:0;
+    background-color:#ffffff;
+    color:#4b4c4d;
+    border-top: 1px solid #ccc;
+  }
+    
+  .aFooter {
+    text-align:center;
+    color:inherit;
+    opacity:0.75;
+    margin: 1rem;
+  }
+  
+  .aFooter:hover {
+    opacity:0.9;
+  }
+
+ @media screen and (max-width: 660px) {
+  .spanLogo {
+    display: none;
+  }  
+  .aFooter {
+    line-height: normal;  
+  }
+
+ }
+  
 
