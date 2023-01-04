@@ -2,29 +2,30 @@
 
 namespace App\Form;
 
-use App\Entity\Tutoriel;
+use App\Entity\Ticket;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class TutorielType extends AbstractType
+class TicketType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title')
-            ->add('description')
             ->add('content')
-            ->add('level', null, ['choice_label' => 'name'])
-            ->add('category', null, ['choice_label' => 'label'])
+            // ->add('submitedAt', 'date', array(
+            //     'data' => new \DateTimeImmutable
+            // ))
+            // ->add('submitedAt')
+            // ->add('user')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Tutoriel::class,
+            'data_class' => Ticket::class,
         ]);
     }
 }

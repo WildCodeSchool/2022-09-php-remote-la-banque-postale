@@ -31,9 +31,6 @@ class Tutoriel
     #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Comment::class)]
     private Collection $comments;
 
-    #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Ticket::class)]
-    private Collection $tickets;
-
     #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Question::class)]
     private Collection $questions;
 
@@ -50,7 +47,6 @@ class Tutoriel
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->tickets = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->favoris = new ArrayCollection();
     }
@@ -138,35 +134,6 @@ class Tutoriel
         return $this;
     }
 
-    /**
-     * @return Collection<int, Ticket>
-     */
-    public function getTickets(): Collection
-    {
-        return $this->tickets;
-    }
-
-    public function addTicket(Ticket $ticket): self
-    {
-        if (!$this->tickets->contains($ticket)) {
-            $this->tickets->add($ticket);
-            $ticket->setTutoriel($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTicket(Ticket $ticket): self
-    {
-        if ($this->tickets->removeElement($ticket)) {
-            // set the owning side to null (unless already changed)
-            if ($ticket->getTutoriel() === $this) {
-                $ticket->setTutoriel(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Question>
