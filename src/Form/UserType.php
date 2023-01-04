@@ -2,31 +2,29 @@
 
 namespace App\Form;
 
-use App\Entity\Tutoriel;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class TutorielType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('content')
-            ->add('level', null, ['choice_label' => 'name'])
-            ->add('category', null, ['choice_label' => 'label'])
+            ->add('email')
+            ->add('roles')
+            ->add('password')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('avatar')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Tutoriel::class,
+            'data_class' => User::class,
         ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Tutoriel;
 use App\Form\TutorielType;
@@ -10,14 +10,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/tutoriel')]
-class TutorielController extends AbstractController
+#[IsGranted('ROLE_ADMIN')]
+class AdminTutorielController extends AbstractController
 {
     #[Route('/', name: 'app_tutoriel_index', methods: ['GET'])]
     public function index(TutorielRepository $tutorielRepository, LevelRepository $levelRepository): Response
     {
-        return $this->render('tutoriel/index.html.twig', [
+        return $this->render('tutoriel/admintutoriel/index.html.twig', [
             'tutoriels' => $tutorielRepository->findAll(),
             'levels' => $levelRepository->findAll()
         ]);
@@ -36,7 +38,7 @@ class TutorielController extends AbstractController
             return $this->redirectToRoute('app_tutoriel_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tutoriel/new.html.twig', [
+        return $this->renderForm('tutoriel/admintutoriel/new.html.twig', [
             'tutoriel' => $tutoriel,
             'form' => $form,
         ]);
@@ -45,7 +47,7 @@ class TutorielController extends AbstractController
     #[Route('/{id}', name: 'app_tutoriel_show', methods: ['GET'])]
     public function show(Tutoriel $tutoriel): Response
     {
-        return $this->render('tutoriel/show.html.twig', [
+        return $this->render('tutoriel/admintutoriel/show.html.twig', [
             'tutoriel' => $tutoriel,
         ]);
     }
@@ -62,7 +64,7 @@ class TutorielController extends AbstractController
             return $this->redirectToRoute('app_tutoriel_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tutoriel/edit.html.twig', [
+        return $this->renderForm('tutoriel/admintutoriel/edit.html.twig', [
             'tutoriel' => $tutoriel,
             'form' => $form,
         ]);
