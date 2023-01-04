@@ -8,7 +8,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
-
 class TutorielType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
