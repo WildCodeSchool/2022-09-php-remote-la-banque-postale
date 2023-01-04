@@ -1,12 +1,12 @@
 .mainnav {
     background-color: #003da5;
-    text-decoration: white;
+    margin: 0;
+    width: 100% ;
 }
 
 .nav-link {
     color: white;
 }
-
 
 .nav-link:hover {
     color: white;
@@ -21,14 +21,27 @@
     color: #FFC905;
 }
 
+
+.navbar-toggler-icon{
+    color: #FFC905;
+}
 @media screen and (max-width: 600px) {
-    .main nav {
-        overflow: hidden;
+    .threeicons {
+        display: none;
+    }
+    .userIcone, .signOutIcone {
+        width: 25%;
+    }
+    .mobilenav {
         position: fixed;
-        bottom: 0;
+        bottom: 0vh;
         width: 100%;
     }
-    .logonavbar {
+}
+
+@media screen and (min-width: 601px) {
+
+    .mobilenav {
         display: none;
     }
 }
