@@ -1,0 +1,23 @@
+<nav class="landingnav d-flex align-items-center">
+
+
+	<div class="container-fluid">
+		<a class="navbar-brand fs-3 ms-2" href="#">La Ligne Bleue</a>
+
+		<ul>
+			{% if app.user %}
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}"><img class="w-50" src="{{ asset('build/images/sign-out.png') }}" alt="SignOut"></a>
+				</li>
+				<li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{ path('app_login') }}"><img class="w-50" src="{{ asset('build/images/user.png') }}" alt="User">
+							Se connecter</a>
+					</li>
+					<li>
+					{% endif %}
+				</ul>
+
+			</div>
+		</nav>

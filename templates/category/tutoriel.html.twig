@@ -5,37 +5,44 @@
 
 {% block body %}
 
-	<h1>{{categories.label}}</h1>
+    {% if is_granted("ROLE_ADMIN") %}
+    <ul>
+    <li><a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}">Éditer le tutoriel</a></li>
+    <li><a href="{{ path('app_tutoriel_delete', {'id': tutoriel.id}) }}">Supprimer le tutoriel</a></li>
+    </ul>
+    {% endif %}
 
-	{% for level in levels %}
-		<div class="accordion" id="accordionExample">
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="heading{{level.id}}">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{level.id}}" aria-expanded="true" aria-controls="collapseOne">
-						<h3>{{level.name}}</h3>
-					</button>
-				</h2>
-				<div id="collapse{{level.id}}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-					<div class="accordion-body">
-						{% for tutoriel in tutoriels %}
-							{% if level.name == tutoriel.level.name %}
-								<div class="d-inline-flex p-2">
-									<div class="card" style="width: 18rem;">
-										<div class="card-body">
-											<h5 class="card-title">{{tutoriel.title}}</h5>
-											<h6 class="card-subtitle mb-2 text-muted">{{tutoriel.id}}</h6>
-											<p class="card-text">{{tutoriel.description}}</p>
-											<a href="{{ path('app_tutoriel_show', {id: tutoriel.id}) }}" class="card-link">Voir la fiche
-												{{tutoriel.title}}</a>
-										</div>
-									</div>
-								</div>
-							{% endif %}
-						{% endfor %}
-					</div>
-				</div>
-            </div>
-        </div>
-		{% endfor %}
+	<h1>Tutoriel
+		{{tutoriel.title}}</h1>
+
+	<p>{{ tutoriel.content }}</p>
+
+
+	<a href="{{ path('category_level_show', {'slug': category.slug}) }}">
+		<button>Revenir à la page précédente</button>
+	</a>
+
+	{% if app.user %}
+
+		<h2>Ajouter un commentaire</h2>
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<button type="submit">Ajouter un commentaire</button>
+		{{ form_end(form) }}
+	{% endif %}
+
+	{% for comment in tutoriel.comments %}
+
+		<div>
+			<h3>Postée par:
+				{{comment.user.firstname}} le {{comment.postedat.format('d/m/Y')}}</h3>
+			<div>
+				<p>{{comment.text}}</p>
+			</div>
+			{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
+				<a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
+			{% endif %}
+		</div>
+	{% endfor %}
 
 {% endblock %}
