@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<h1>Inscrivez-vous sur notre plateforme</h1>
+	<div class="mt-3 mt-lg-5 registercontainer d-flex flex-row justify-content-space p-2 gap-2 flex-sm-column">
+		{{ form_start(registrationForm, {'attr': {'class': 'register_form'}}) }}
+		<div class="row gap-lg-5 gap-3 mt-2 ">
+			<div class="col gap-3 d-flex">
+				<label class="w-25" for="firstname">Prénom</label>
+				{{ form_widget(registrationForm.firstname) }}
+			</div>
+
+			<div class="col gap-3 d-flex">
+				<label class="w-25" for="lastname">Nom</label>
+				{{ form_widget(registrationForm.lastname) }}
+			</div>
+		</div>
+
+		<div class="row gap-lg-5 gap-3 mt-3">
+			<div class="col gap-3 d-flex">
+				<label class="w-25" for="email">Courriel</label>
+				{{ form_widget(registrationForm.email) }}
+			</div>
+
+			<div class="col gap-3 d-flex ">
+				<label class="w-75" for="">Mot de passe</label>
+				{{ form_widget(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+			</div>
+		</div>
+
+		<div class="w-100">
+			<label class="mt-3" for="avatar">Photo de profil</label>
+			{{ form_widget(registrationForm.avatar) }}
+		</div>
+
+		<label class="mt-3" for="agrees">CGU</label>
+		{{ form_widget(registrationForm.agreeTerms) }}
+
+		<div class="d-flex flex-row justify-content-center align-items-center">
+			<button class="btn bg-primary text-light mt-3" type="submit" class="btn">S'enregistrer</button>
+		</div>
+		{{ form_end(registrationForm) }}
+	</div>
+</div>{% endblock %}
