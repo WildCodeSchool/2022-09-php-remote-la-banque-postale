@@ -31,7 +31,7 @@
             <tr>
                 <td>{{ tutoriel.id }}</td>
                 <td>{{ tutoriel.title }}</td>
-                <td>{{ tutoriel.description }}</td>
+                <td>{{ tutoriel.description|raw }}</td>
                 <td>{{ tutoriel.level.name}}</td>
                 <td>
                     <a href="{{ path('app_tutoriel_show', {'id': tutoriel.id}) }}">Voir</a>

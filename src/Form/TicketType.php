@@ -6,6 +6,7 @@ use App\Entity\Ticket;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class TicketType extends AbstractType
 {
@@ -13,12 +14,7 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content')
-            // ->add('submitedAt', 'date', array(
-            //     'data' => new \DateTimeImmutable
-            // ))
-            // ->add('submitedAt')
-            // ->add('user')
+            ->add('content', CKEditorType::class)
         ;
     }
 
