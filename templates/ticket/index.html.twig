@@ -26,7 +26,7 @@
                 <td>{{ ticket.id }}</td>
                 <td>{{ ticket.user.id }}</td>
                 <td>{{ ticket.title }}</td>
-                <td>{{ ticket.content }}</td>
+                <td>{{ ticket.content|raw }}</td>
                 <td>{{ ticket.submitedAt ? ticket.submitedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_ticket_show', {'id': ticket.id}) }}">Voir</a>
