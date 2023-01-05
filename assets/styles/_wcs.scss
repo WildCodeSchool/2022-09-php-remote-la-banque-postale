@@ -8,8 +8,10 @@ $light: #fffbfb;
 
 body {
     margin: 0;
+    padding: 0;
     background-color: $wild-color;
     color: $light;
+    height: 100%;
 }
 
 .pink-stripe-not-height {
