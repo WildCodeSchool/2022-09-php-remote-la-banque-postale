@@ -73,7 +73,7 @@
 				le
 				{{comment.postedat.format('d/m/Y')}}</h3>
 			<div>
-				<p>{{comment.text}}</p>
+				<p>{{comment.text|raw}}</p>
 			</div>
 			{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
 				<a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>

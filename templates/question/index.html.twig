@@ -47,6 +47,7 @@
 		</thead>
 
 		{% for answer in questions.0.answers %}
+        {% if answer.question.id == question.id %}
 			<tbody>
 				<tr>
 					<td>{{ answer.id }}</td>
@@ -58,7 +59,7 @@
 					</td>
 				</tr>
 			</tbody>
-
+        {% endif %}
 		{% endfor %}
 	</table>
 {% else %}
