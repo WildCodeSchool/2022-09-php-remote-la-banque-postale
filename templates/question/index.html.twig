@@ -5,6 +5,10 @@
 
 {% block body %}
 
+{# <pre>
+    {{ dump(questions) }}
+</pre> #}
+
 <h1>Administration des questions et des réponses</h1>
 
 <a href="{{ path('app_question_new') }}">Créer une nouvelle question</a>
@@ -15,7 +19,6 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Tuto n°</th>
 				<th>Content</th>
 				<th>actions</th>
@@ -23,7 +26,6 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>{{ question.id }}</td>
 				<td>{{ question.tutoriel.id }}</td>
 				<td>{{ question.content }}</td>
 				<td>
