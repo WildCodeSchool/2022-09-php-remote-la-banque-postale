@@ -54,6 +54,10 @@ class CategoryFixtures extends Fixture
             'label' => 'Pour aller plus loin',
             'image' => 'category10.svg'
         ],
+        [
+            'label' => 'Rechercher un tutoriel',
+            'image' => 'category10.svg'
+        ],
 
     ];
 

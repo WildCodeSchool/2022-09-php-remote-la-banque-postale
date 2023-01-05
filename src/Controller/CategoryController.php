@@ -27,6 +27,14 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    #[Route('/tutoriel', name: 'app_category_tutoriel', methods: ['GET'])]
+    public function indexTutoriel(TutorielRepository $tutorielRepository): Response
+    {
+        return $this->render('category/indexTutoriels.html.twig', [
+            'tutoriels' => $tutorielRepository->findAll(),
+        ]);
+    }
+
     #[Route('/{slug}/', name: 'category_level_show')]
     public function showLevel(
         string $slug,
