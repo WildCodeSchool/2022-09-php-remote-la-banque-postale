@@ -1,0 +1,22 @@
+<footer>
+	<div class="container d-flex align-items-center">
+		<div class="mb-3">
+			<a class="d-inline-flex align-items-center mb-2 mt-3 text-decoration-none" href="/" aria-label="La ligne bleue">
+				<img class="w-50" src="{{ asset('build/images/laposte.png') }}" alt="logo" id="logo">
+				<span class="spanLogo fs-5">La ligne bleue</span>
+			</a>
+			<ul class="list-unstyled small">
+				<li class="mb-2 ms-4 copyright">Copyright © 2023</li>
+			</ul>
+		</div>
+		<div class="divAFooter d-flex align-content-center mx-auto flex-wrap">
+			<a class="aFooter" href="">Plan du site</a>
+			<a class="aFooter" href="">Mentions contractuelles</a>
+			<a class="aFooter" href="">Mentions légales</a>
+			<a class="aFooter" href="">Données personnelles et cookies</a>
+			{% if app.user %}
+				<a class="aFooter" href="{{ path('app_ticket_new') }}">Signaler un bug</a>
+			{% endif %}
+		</div>
+	</div>
+</footer>
