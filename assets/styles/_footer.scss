@@ -3,27 +3,30 @@ footer {
     background-color:#ffffff;
     color:#4b4c4d;
     border-top: 1px solid #ccc;
+    position: static;
+    bottom: 0;
+    margin-top: 10%;
+    max-height: 120px;
+    font-size: small;
   }
-    
+
   .aFooter {
     text-align:center;
     color:inherit;
     opacity:0.75;
     margin: 1rem;
   }
-  
+
   .aFooter:hover {
     opacity:0.9;
   }
 
  @media screen and (max-width: 660px) {
-  .spanLogo {
-    display: none;
-  }  
   .aFooter {
-    line-height: normal;  
+    line-height: normal;
+    font-size: x-small;
   }
 
  }
-  
+
 
