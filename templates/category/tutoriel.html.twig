@@ -5,14 +5,24 @@
 
 {% block body %}
 
+	{% if gameAnswers %}
+
+		{% if gameAnswers.answer.iscorrect == true %}
+
+			<img class="w-50" src="{{ asset('images/circle-check-solid.svg') }}">
+			<p>validé</p>
+
+		{% else %}
+			<img class="w-50" src="{{ asset('images/circle-xmark-solid.svg') }}">
+			<p>faux</p>
+
+		{% endif %}
+	{% endif %}
+
 	{% if is_granted("ROLE_ADMIN") %}
 		<ul>
-			<li>
-				<ahref="{{path('app_tutoriel_edit',{'id':tutoriel.id})}}">Éditer le tutoriel</ahref=>
-			</li>
-			<li>
-				<ahref="{{path('app_tutoriel_delete',{'id':tutoriel.id})}}">Supprimer le tutoriel</ahref=>
-			</li>
+			<li><ahref="{{path('app_tutoriel_edit',{'id':tutoriel.id})}}">Éditer le tutoriel</a></li>
+			<li><ahref="{{path('app_tutoriel_delete',{'id':tutoriel.id})}}">Supprimer le tutoriel</a></li>
 		</ul>
 	{% endif %}
 
