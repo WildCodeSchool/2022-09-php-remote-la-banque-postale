@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutoriel index
+{% endblock %}
+
+{% block body %}
+
+	<h1>Administration des tutoriels</h1>
+
+<a href="{{ path('app_tutoriel_new') }}">Créer un nouveau tutoriel</a>
+
+{% for level in levels %}
+
+<h2>Fiches de niveau {{level.name}}</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Level</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for tutoriel in tutoriels %}
+        {% if level.name == tutoriel.level.name %}
+
+            <tr>
+                <td>{{ tutoriel.id }}</td>
+                <td>{{ tutoriel.title }}</td>
+                <td>{{ tutoriel.description|raw }}</td>
+                <td>{{ tutoriel.level.name}}</td>
+                <td>
+                    <a href="{{ path('app_tutoriel_show', {'id': tutoriel.id}) }}">Voir</a>
+                    <a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}">Éditer</a>
+                    <br>
+                    {{ include('tutoriel/admintutoriel/_delete_form.html.twig') }}
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endfor %}
+
+{% endblock %}

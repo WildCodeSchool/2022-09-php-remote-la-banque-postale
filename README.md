@@ -45,6 +45,14 @@ It's symfony website-skeleton project with some additional library (webpack, fix
 3. Run `php ./vendor/bin/phpmd src text phpmd.xml` to launch PHP Mess Detector
 4. Run `./node_modules/.bin/eslint assets/js` to launch ESLint JS linter
 
+### Automatic dev run
+
+```
+bash script.sh
+//sh script.sh
+bash script.sh -- serve --dev
+```
+
 ### Windows Users
 
 If you develop on Windows, you should edit you git configuration to change your end of line rules with this command:

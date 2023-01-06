@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket index{% endblock %}
+
+{% block body %}
+    <h1>Gestionnaire de ticket</h1>
+
+
+    <a href="{{ path('app_admin') }}"> <button> Retour au panneau général </button></a>
+    <a href="{{ path('app_ticket_new') }}"> <button> Créer un nouveau ticket </button></a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id de l'auteur</th>
+                <th>Titre</th>
+                <th>Contenu du ticket</th>
+                <th>Posté le :</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.user.id }}</td>
+                <td>{{ ticket.title }}</td>
+                <td>{{ ticket.content|raw }}</td>
+                <td>{{ ticket.submitedAt ? ticket.submitedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_ticket_show', {'id': ticket.id}) }}">Voir</a>
+                    <a href="{{ path('admin_app_ticket_edit', {'id': ticket.id}) }}">Éditer</a>
+                    {{ include('ticket/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

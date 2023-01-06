@@ -1,0 +1,47 @@
+<nav class="mainnav d-flex align-items-center">
+
+
+	<div class="container d-flex align-items-center p-2 w-90">
+		{% if app.user %}
+			<a href="{{ path('app_category_index') }}" class="logonavbar navbar-brand fs-2 mt-1">La Ligne Bleue</a>
+		{% else %}
+			<a href="{{ path('app_landing') }}" class="logonavbar navbar-brand fs-2 mt-1">La Ligne Bleue</a>
+		{% endif %}
+		<div class="d-inline-flex mt-2">
+
+			<ul class="d-inline-flex align-items-center mb-2 p-0">
+
+				{% if app.user %}
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="{{ path('app_category_index') }}"><img src="{{ asset('build/images/home.png') }}" alt="Home"></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><img src="{{ asset('build/images/star.png') }}" alt="Favorite"></a>
+					</li>
+				{% endif %}
+
+				{% if is_granted("ROLE_ADMIN") %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_admin') }}"><img src="{{ asset('build/images/administrateur.png') }}" alt="Admin"></a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+	<div class="p-2 flex-shrink-1 me-3">
+		<ul class="d-inline-flex mb-2">
+			{% if app.user %}
+				<li class="list-unstyled"></li>
+				<a class="connexion" aria-current="page" href="{{ path('app_logout') }}">
+					<strong>Se déconnecter</strong>
+				</a>
+			</li>
+		{% else %}
+			<li class="list-unstyled"></li>
+			<a class="connexion" aria-current="page" href="{{ path('app_login') }}">
+				<strong>Se connecter</strong>
+			</a>
+
+		</li>
+	{% endif %}
+</ul></div></div></div></nav>
