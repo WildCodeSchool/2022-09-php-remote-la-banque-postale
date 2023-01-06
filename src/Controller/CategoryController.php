@@ -33,8 +33,11 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/search', name: 'app_tutoriel_search', methods: ['GET'])]
-    public function searchTutoriels(TutorielRepository $tutorielRepository, CategoryRepository $categoryRepository, Request $request): Response
-    {
+    public function searchTutoriels(
+        TutorielRepository $tutorielRepository,
+        CategoryRepository $categoryRepository,
+        Request $request
+    ): Response {
         $form = $this->createForm(SearchTutorielsType::class, null, [
             'method' => 'GET'
         ]);

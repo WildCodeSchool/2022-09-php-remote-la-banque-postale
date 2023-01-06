@@ -39,7 +39,7 @@ class TutorielRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLikeName(?string $name)
+    public function findLikeName(?string $name): array
     {
         $queryBuilder = $this->createQueryBuilder('t')
             ->where('t.title LIKE :name OR t.description LIKE :name')
