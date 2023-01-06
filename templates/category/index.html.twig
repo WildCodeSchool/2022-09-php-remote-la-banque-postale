@@ -10,14 +10,48 @@
 	</h1>
 	<div class="container">
 		<div class="blocContainer">
+			{% set links = [] %}
+			{%	set links = links|merge(
+					[
+						{
+							'label': 'Mes favoris',
+							'path': path('app_landing'),
+							'img': asset('build/images/categories-blocs/favoris.svg')
+						}
+					]
+				)
+			%}
 			{% for category in categories %}
-				<a class="blockItems text-decoration-none" href="{{path('category_level_show', {'slug': category.slug})}}">
+				{%	set links = links|merge(
+						[
+							{
+								'label': category.label,
+								'path': path('category_level_show', {'slug': category.slug}),
+								'img': asset('build/images/categories-blocs/' ~ category.image)
+							}
+						]
+					)
+				%}
+			{% endfor %}
+			{%	set links = links|merge(
+					[
+						{
+							'label': 'Rechercher un tuto',
+							'path': path('app_tutoriel_search'),
+							'img': asset('build/images/categories-blocs/search.svg')
+						}
+					]
+				)
+			%}
+			{% for link in links %}
+				<a class="blockItems text-decoration-none" href="{{ link.path }}">
 					<div class="d-flex align-items-center flex-column h-100 justify-content-center gap-4">
-						<img class="w-25" src="{{ asset('images/' ~ category.image) }}">
-						<h3>{{category.label}}</h3>
+						<img class="w-25" src="{{ link.img }}">
+						<h3>{{link.label}}</h3>
 					</div>
 				</a>
 			{% endfor %}
+
 		</div>
 	</div>
 {% endblock %}
