@@ -31,14 +31,7 @@
 			{% endfor %}
 		{% endfor %}
 		{% block body %}{% endblock %}
-           
-		
-			{% if app.user %}
-				<a href="{{ path('app_ticket_new') }}">
-					<button>Signaler un bug</button>
-				</a>
-			{% endif %}
-		
-         {% include 'Include/_footer.html.twig' %}
+
+		{% include 'Include/_footer.html.twig' %}
 	</body>
 </html>

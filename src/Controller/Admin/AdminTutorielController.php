@@ -25,6 +25,7 @@ class AdminTutorielController extends AbstractController
         ]);
     }
 
+
     #[Route('/new', name: 'app_tutoriel_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TutorielRepository $tutorielRepository): Response
     {

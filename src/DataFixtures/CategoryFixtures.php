@@ -10,29 +10,29 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class CategoryFixtures extends Fixture
 {
     public const CATEGORYLIST = [
+        // [
+        //     'label' => 'Mes favoris',
+        //     'image' => 'category1.svg',
+        // ],
         [
-            'label' => 'Mes favoris',
+            'label' => 'Utiliser Ligne Bleue',
             'image' => 'category1.svg',
         ],
         [
-            'label' => 'Utiliser Ligne Bleue',
-            'image' => 'category2.svg',
-        ],
-        [
             'label' => 'Utiliser mon téléphone',
-            'image' => 'category3.svg'
+            'image' => 'category2.svg'
         ],
         [
             'label' => 'Aller sur Internet',
-            'image' => 'category4.svg'
+            'image' => 'category3.svg'
         ],
         [
             'label' => 'Vie Courante',
-            'image' => 'category5.svg'
+            'image' => 'category4.svg'
         ],
         [
             'label' => 'Me divertir',
-            'image' => 'category11.svg'
+            'image' => 'category5.svg'
         ],
         [
             'label' =>  'Mes mails',
@@ -54,11 +54,10 @@ class CategoryFixtures extends Fixture
             'label' => 'Pour aller plus loin',
             'image' => 'category10.svg'
         ],
-        [
-            'label' => 'Rechercher un tutoriel',
-            'image' => 'category10.svg'
-        ],
-
+        // [
+        //     'label' => 'Rechercher un tutoriel',
+        //     'image' => 'category10.svg'
+        // ],
     ];
 
     public function __construct(private SluggerInterface $slugger)

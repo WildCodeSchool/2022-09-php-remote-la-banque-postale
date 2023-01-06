@@ -5,37 +5,38 @@
 
 {% block body %}
 
-	{# <h1>{{category.label}}</h1>
+	<h1>Recherchez votre tutoriel</h1>
 
-	{% for level in levels %}
-		<div class="accordion" id="accordionExample">
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="heading{{level.id}}">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{level.id}}" aria-expanded="true" aria-controls="collapseOne">
-						<h3>{{level.name}}</h3>
-					</button>
-				</h2>
-				<div id="collapse{{level.id}}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-					<div class="accordion-body"> #}
-						{% for tutoriel in tutoriels %}
-							{# {% if level.name == tutoriel.level.name %} #}
-								<div class="d-inline-flex p-2">
-									<div class="card" style="width: 18rem;">
-										<div class="card-body">
-											<h5 class="card-title">{{tutoriel.title}}</h5>
-											<h6 class="card-subtitle mb-2 text-muted">{{tutoriel.id}}</h6>
-											<p class="card-text">{{tutoriel.description}}</p>
-											{# <a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="card-link">Voir la fiche #}
-												{# {{tutoriel.title}}</a> #}
-										</div>
-									</div>
-								</div>
-							{# {% endif %} #}
-						{# {% endfor %}
+	<div class="searchForm d-flex justify-content-center flex-row">
+		{{ form_start(form) }}
+
+		<div class="input-group mb-3">
+			{{ form_widget(form.search) }}
+			<button class="btn btn-warning">Rechercher</button>
+		</div>
+		{{ form_end(form) }}
+	</div>
+
+	<div class="container">
+		<div class="containerCards">
+
+			{% for tutoriel in tutoriels %}
+
+
+				<div class="d-lg-inline-flex d-md-inline-flex d-flex justify-content-center align-item-center p-2">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">{{tutoriel.title}}</h5>
+							<h6 class="card-subtitle mb-2 text-muted">{{tutoriel.id}}</h6>
+							<p class="card-text">{{tutoriel.description}}</p>
+							<a href="{{ path('level_tutoriel_show', {"category_slug": categories.0.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="card-link">Voir la fiche
+								{{tutoriel.title}}</a>
+						</div>
 					</div>
 				</div>
-            </div>
-        </div>
-		{% endfor %} #}
+			{% endfor %}
+
+		</div>
+	</div>
 
 {% endblock %}

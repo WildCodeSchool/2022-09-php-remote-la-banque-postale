@@ -39,28 +39,39 @@ class TutorielRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Tutoriel[] Returns an array of Tutoriel objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findLikeName(?string $name)
+    {
+        $queryBuilder = $this->createQueryBuilder('t')
+            ->where('t.title LIKE :name OR t.description LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->orderBy('t.title', 'ASC')
+            ->getQuery();
 
-//    public function findOneBySomeField($value): ?Tutoriel
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $queryBuilder->getResult();
+    }
+
+    //    /**
+    //     * @return Tutoriel[] Returns an array of Tutoriel objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('t.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Tutoriel
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
