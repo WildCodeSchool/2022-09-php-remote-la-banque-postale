@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\SearchTutorielsType;
 
 #[Route('/category')]
 class CategoryController extends AbstractController
@@ -33,6 +34,38 @@ class CategoryController extends AbstractController
     {
         return $this->render('category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/search', name: 'app_tutoriel_search', methods: ['GET'])]
+    public function searchTutoriels(
+        TutorielRepository $tutorielRepository,
+        CategoryRepository $categoryRepository,
+        Request $request
+    ): Response {
+        $form = $this->createForm(SearchTutorielsType::class, null, [
+            'method' => 'GET'
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            $tutoriels = $tutorielRepository->findLikeName($search);
+        } else {
+            $tutoriels = $tutorielRepository->findAll();
+        }
+        return $this->renderForm('category/indexTutoriels.html.twig', [
+            'tutoriels' => $tutoriels,
+            'categories' => $categoryRepository->findAll(),
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/tutoriel', name: 'app_category_tutoriel', methods: ['GET'])]
+    public function indexTutoriel(TutorielRepository $tutorielRepository): Response
+    {
+        return $this->render('category/indexTutoriels.html.twig', [
+            'tutoriels' => $tutorielRepository->findAll(),
         ]);
     }
 
@@ -49,7 +82,6 @@ class CategoryController extends AbstractController
                 'Pas de catégorie nommée : ' . $slug . ' found in category\'s table.'
             );
         }
-
         $tutoriel = $tutorielRepository->findBy(array('category' => $category));
         $level = $levelRepository->findAll();
 
