@@ -3,24 +3,17 @@
 {% block title %}Hello LoginController!
 {% endblock %}
 
-{% block nav %}
-	{% include "landing/_landingnav.html.twig" %}
-{% endblock %}
-
 
 {% block body %}
 	<div class="d-block pink-stripe-not-height">
 
-		<h1 class="mt-5">
-			Bienvenue sur Ligne bleue
-		</h1>
-		<h2 class="mt-4 fst-italic">
+		<h2 class="mt-4 fst-italic me-3 ms-3 pt-3">
 			+100 tutos pour devenir autonome sur son smartphone et son ordinateur
 		</h2>
 	</div>
 
-	<div class="d-flex flex-row justify-content-center">
-		<button type="button" class="createspace btn btn-primary fs-2 mt-5">Créer son espace personnel</button>
+	<div class="containerButtonCentered">
+		<button type="button" class="siteButton fs-2 mt-5">Créer son espace personnel</button>
 	</div>
 
 	<div>
@@ -46,8 +39,7 @@
 
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-
-			<button class="btn btn-primary m-1 w-50 justify-self-center" type="submit">Se connecter</button>
+			<button class="siteButton m-1 w-50 justify-self-center" type="submit">Se connecter</button>
 		</form>
 	</div>
 

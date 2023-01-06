@@ -6,11 +6,14 @@ $light: #fffbfb;
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
-    background-color: $wild-color;
-    color: $light;
+    padding: 0;
     height: 100%;
+    position: relative;
+    background: linear-gradient(#FFC905, white);
+    background-repeat: no-repeat;
 }
 
 .pink-stripe-not-height {
@@ -50,16 +53,53 @@ body {
     }
 }
 
-.navbar-toggler {
-    border-color: #003da5;
-    color: #003da5;
+
+.containerButtonCentered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-footer {
-    position: absolute;
-    bottom: 0%;
-    width: 100%;
-    height: 150px;
+.siteButton {
+    color: white;
+    text-decoration: none;
+    background-color: #003da5;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(192, 192, 192, 0.17) 0px -23px 25px 0px inset, rgba(192, 192, 192, 0.15) 0px -36px 30px 0px inset, rgba(192, 192, 192, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(192, 192, 192, 0.09) 0px 16px 8px, rgba(192, 192, 192, 0.09) 0px 32px 16px;
+    margin-top: 5%;
+    border: none;
+}
+
+.siteButton:hover {
+    color: #003da5;
+    background-color: #FFC905;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.pLanding {
+    color: #003da5;
+    font-size: 2em;
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    line-height: 2;
+}
+
+.pLandingSecond {
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+h3 {
+    font-size: 1rem;
 }
 
 
