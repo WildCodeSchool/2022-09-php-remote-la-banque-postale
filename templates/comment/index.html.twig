@@ -34,3 +34,11 @@
         </tbody>
     </table>
 {% endblock %}
+
+
+{% if game %}
+    {% if answer.iscorrect && gameAnswer.id == answer.id %}
+    <img class="w-50" src="{{ asset('images/circle-check-solid.svg') }}">
+    {% else %}
+    <img class="w-50" src="{{ asset('images/circle-xmark-solid.svg') }}">
+{% endif %}

@@ -42,6 +42,8 @@ class CategoryController extends AbstractController
         Category $category,
         TutorielRepository $tutorielRepository,
         LevelRepository $levelRepository,
+        GameRepository $gameRepository,
+        GameAnswerRepository $gameAnswerRepository,
     ): Response {
 
         if (!$category instanceof Category) {
@@ -52,11 +54,14 @@ class CategoryController extends AbstractController
 
         $tutoriel = $tutorielRepository->findBy(array('category' => $category));
         $level = $levelRepository->findAll();
-
+        $games = $gameRepository->findBy(array('user' => $this->getUser(), 'tutoriel' => $tutoriel));
+        $gameAnswer = $gameAnswerRepository->findBy(array('game' => $games));
         return $this->render('category/level.html.twig', [
             'category' => $category,
             'tutoriels' => $tutoriel,
             'levels' => $level,
+            'games' => $games,
+            'gameAnswers' => $gameAnswer,
         ]);
     }
 

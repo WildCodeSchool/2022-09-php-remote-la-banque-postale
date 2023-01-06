@@ -3,8 +3,27 @@
 {% block title %}Tutoriel
 {% endblock %}
 
+
 {% block body %}
+<pre>
+    {# {{ dump(games) }}
+    {{ dump(gameAnswers) }}
+        {{ dump(app.user) }} #}
+        {{ dump(tutoriels) }}
+        {{ dump(tutoriels.2.questions.0.answers) }}
+        {{ dump(tutoriels.2.questions.0.answers.owner.gameAnswers.0.answer.id) }}
+        {{ dump(tutoriels.2.questions.0.answers.0.iscorrect) }}
+        {{ dump(tutoriels.2.questions.0.answers.0.id) }}
+</pre>
+
 	<h1>{{category.label}}</h1>
+
+{# {% if app.user.games %}
+    {% if answer.iscorrect && gameAnswer.answer.id == answer.id %}
+    <img class="w-50" src="{{ asset('build/images/circle-check-solid.svg') }}">
+    {% else %}
+    <img class="w-50" src="{{ asset('build/images/circle-xmark-solid.svg') }}">
+{% endif %} #}
 
 	{% for level in levels %}
 		<div class="accordion" id="accordionExample">
