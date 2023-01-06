@@ -16,7 +16,7 @@
 						{
 							'label': 'Mes favoris',
 							'path': path('app_landing'),
-							'img': asset('images/favoris.svg')
+							'img': asset('build/images/categories-blocs/favoris.svg')
 						}
 					]
 				)
@@ -27,7 +27,7 @@
 							{
 								'label': category.label,
 								'path': path('category_level_show', {'slug': category.slug}),
-								'img': asset('images/' ~ category.image)
+								'img': asset('build/images/categories-blocs/' ~ category.image)
 							}
 						]
 					)
@@ -38,7 +38,7 @@
 						{
 							'label': 'Rechercher un tuto',
 							'path': path('app_tutoriel_search'),
-							'img': asset('images/search.svg')
+							'img': asset('build/images/categories-blocs/search.svg')
 						}
 					]
 				)
