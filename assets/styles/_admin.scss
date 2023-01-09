@@ -1,0 +1,14 @@
+.adminPanelTable {
+    padding: 0.5rem;
+    border-width: 0;
+    table-layout: auto;
+    width: 100vw;
+    margin-right: 1rem;
+}
+
+@media screen and (max-width: 990px) {
+    .adminPanelTable {
+        font-size: 80%;
+    }
+
+}

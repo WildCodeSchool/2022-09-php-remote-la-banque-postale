@@ -18,11 +18,9 @@
 		{% endblock %}
 	</head>
 	<body>
-
-
-		{% block nav %}
-			{% include 'Include/_navbar.html.twig' %}
-		{% endblock %}
+    <header>
+		{% include 'Include/_navbar.html.twig' %}
+    </header>
 		{% for category, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ category }}">
@@ -30,9 +28,9 @@
 				</div>
 			{% endfor %}
 		{% endfor %}
-        <main>
-		{% block body %}{% endblock %}
-        </main>
+		<main>
+			{% block body %}{% endblock %}
+		</main>
 		{% include 'Include/_footer.html.twig' %}
 	</body>
 </html>
