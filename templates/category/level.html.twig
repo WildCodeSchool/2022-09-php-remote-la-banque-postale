@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1>{{category.label}}</h1>
+	<h1 class="mb-5">{{category.label}}</h1>
 
 	{% for level in levels %}
 		<div class="accordion" id="accordionExample">
@@ -24,7 +24,7 @@
 											<h5 class="card-title">{{tutoriel.title}}</h5>
 											<h6 class="card-subtitle mb-2 text-muted">{{tutoriel.id}}</h6>
 											<p class="card-text">{{tutoriel.description}}</p>
-											<a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="card-link">Voir la fiche
+											<a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="siteButton">Voir la fiche
 												{{tutoriel.title}}</a>
 										</div>
 									</div>
