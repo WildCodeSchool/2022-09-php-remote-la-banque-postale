@@ -1,5 +1,6 @@
 //start coding by removing this file and adding yours ;)
-@import "wcs";
+@import '_variables.scss';
+@import "_global.scss";
 @import '~bootstrap/scss/bootstrap';
 @import '_loginindex.scss';
 @import '_categoryIndex.scss';

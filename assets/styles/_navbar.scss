@@ -1,5 +1,5 @@
 .mainnav {
-    background-color: #003da5;
+    background-color: var(--color-blue);
     margin: 0;
     width: 100%;
 }
@@ -26,13 +26,13 @@
 }
 
 .logonavbar:hover {
-    color: #FFC905;
+    color: var(--color-yellow);
 }
 
 .connexion {
-    color: #003da5;
+    color: var(--color-blue);
     text-decoration: none;
-    background-color: #FFC905;
+    background-color: var(--color-yellow);
     padding: 12px;
     text-align: center;
     border-radius: 12px;
@@ -56,4 +56,3 @@
 
 }
 
-@media screen and (min-width: 601px) {}
