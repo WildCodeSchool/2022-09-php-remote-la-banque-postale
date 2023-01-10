@@ -125,6 +125,84 @@ td {
     display: table-cell;
 }
 
+.validationButton {
+    color: var(--color-blue);
+    text-decoration: none;
+    background-color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    margin-top: 2rem;
+    border: none;
+}
+
+.validationButton:hover {
+    color: var(--color-yellow);
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.showButton {
+    color: var(--color-blue);
+    text-decoration: none;
+    background-color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border: none;
+}
+
+.showButton:hover {
+    color: var(--color-yellow);
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.deleteButton {
+    color: white;
+    text-decoration: none;
+    background-color: red;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border: none;
+}
+
+.deleteButton:hover {
+    color: red;
+    background-color: white;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.editButton {
+    color: white;
+    text-decoration: none;
+    background-color: green;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border: none;
+}
+
+.editButton:hover {
+    color: green;
+    background-color: white;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.topOfPageButton {
+    display:flex;
+    justify-content: center;
+    align-self: center;
+    margin:0;
+}
+
 @media screen and (max-width: 990px) {
     th {
         font-size: 0.8rem;
