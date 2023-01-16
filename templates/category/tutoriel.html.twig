@@ -21,36 +21,41 @@
 
 		{% endif %}
 	{% endif %}
-
-	{% if is_granted("ROLE_ADMIN") %}
-		<ul>
-			<li><ahref="{{path('app_tutoriel_edit',{'id':tutoriel.id})}}">Éditer le tutoriel</a></li>
-			<li><ahref="{{path('app_tutoriel_delete',{'id':tutoriel.id})}}">Supprimer le tutoriel</a></li>
-		</ul>
-	{% endif %}
-
-	<h1>Tutoriel
-		{{tutoriel.title}}</h1>
-
-	<p>{{ tutoriel.content }}</p>
-
-	<h2>question</h2>
-
-	<form>
-		<p>{{tutoriel.questions.0.content}}</p>
-
-		{% for answer in tutoriel.questions.0.answers %}
-			<div>
-				<input type="radio" id="answer_{{answer.id}}" name="answer" value="{{answer.id}}">
-				<label for="answer_{{answer.id}}">{{answer.content}}</label>
+	<div class="tutoPage">
+		{% if is_granted("ROLE_ADMIN") %}
+			<div class="editAndDelete">
+				<a class="siteButton" href="{{path('app_tutoriel_edit',{'id':tutoriel.id})}}">Éditer le tutoriel</a>
+				<a class="siteButton" href="{{path('app_tutoriel_delete',{'id':tutoriel.id})}}">Supprimer le tutoriel</a>
 			</div>
-		{% endfor %}
+		{% endif %}
 
-		<div>
-			<button type="submit">Valider ma réponse</button>
-		</div>
-	</form>
+		<h1>Tutoriel
+			{{tutoriel.title}}</h1>
 
+		<p class="textTuto">{{ tutoriel.content }}</p>
+
+		<h2>Question</h2>
+
+		<form>
+			<p>{{tutoriel.questions.0.content}}</p>
+
+			{% for answer in tutoriel.questions.0.answers %}
+				<div>
+					<input type="radio" id="answer_{{answer.id}}" name="answer" value="{{answer.id}}">
+					<label for="answer_{{answer.id}}">{{answer.content}}</label>
+				</div>
+			{% endfor %}
+
+			<div>
+				<button class="validationButton" type="submit">Valider ma réponse</button>
+			</div>
+		</form>
+
+
+		<br>
+		<br>
+		<a class="siteButton" href="{{ path('category_level_show', {'slug': category.slug}) }}">Revenir à la page précédente
+		</a>
 
 	<br>
 	<br>
@@ -63,28 +68,35 @@
 		<h2>Ajouter un commentaire</h2>
 		{{ form_start(formComment) }}
 		{{ form_widget(formComment) }}
+
 		<br>
-		<button type="submit">Ajouter un commentaire</button>
 		<br>
-		{{ form_end(formComment) }}
-	{% endif %}
+		{% if app.user %}
 
-	<br><br>
+			<h2 class="mt-5">Ajouter un commentaire</h2>
+			{{ form_start(formComment) }}
+			{{ form_widget(formComment) }}
+			<button class="validationButton" type="submit">Ajouter un commentaire</button>
 
-	{% for comment in tutoriel.comments %}
+			{{ form_end(formComment) }}
+		{% endif %}
 
-		<div>
-			<h3>Postée par:
-				{{comment.user.firstname}}
-				le
-				{{comment.postedat.format('d/m/Y')}}</h3>
-			<div>
-				<p>{{comment.text|raw}}</p>
+		{% for comment in tutoriel.comments %}
+
+			<div class="mt-5">
+				<h3>Postée par:
+					{{comment.user.firstname}}
+					le
+					{{comment.postedat.format('d/m/Y')}}</h3>
+				<div>
+					<p>{{comment.text|raw}}</p>
+				</div>
+				{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
+					<a class="editButton" href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
+
+				{% endif %}
 			</div>
-			{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
-				<a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
-			{% endif %}
-		</div>
-	{% endfor %}
+		{% endfor %}
 
+	</div>
 {% endblock %}

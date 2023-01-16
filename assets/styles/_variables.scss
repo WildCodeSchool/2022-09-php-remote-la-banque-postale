@@ -1,0 +1,13 @@
+$primary: #003da5;
+$yellow: #FFC905;
+
+$accordion-button-active-bg: $yellow;
+$accordion-button-active-color:$primary;
+$accordion-button-focus-box-shadow: white;
+$accordion-button-focus-border-color: white;
+
+
+:root {
+    --color-blue: #{$primary};
+    --color-yellow: #{$yellow};
+}

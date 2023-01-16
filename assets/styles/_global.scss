@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background: linear-gradient(var(--color-yellow), white);
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Questrial', sans-serif;
+}
+
+main {
+    margin-bottom: 25px;
+}
+
+.pink-stripe-not-height {
+    width: 100%;
+    display: flex;
+    font-family: 'Varela Round', sans-serif;
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    align-items: center;
+    justify-content: center;
+}
+
+.pink-stripe {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    font-family: 'Varela Round', sans-serif;
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    align-items: center;
+    justify-content: center;
+}
+
+.white-stripe {
+    background-color: white;
+    padding: 1rem;
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 500px;
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+.containerButtonCentered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.siteButton {
+    color: white;
+    text-decoration: none;
+    background-color: var(--color-blue);
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(192, 192, 192, 0.17) 0px -23px 25px 0px inset, rgba(192, 192, 192, 0.15) 0px -36px 30px 0px inset, rgba(192, 192, 192, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(192, 192, 192, 0.09) 0px 16px 8px, rgba(192, 192, 192, 0.09) 0px 32px 16px;
+    margin-top: 5%;
+    border: none;
+}
+
+.siteButton:hover {
+    color: var(--color-blue);
+    background-color: var(--color-yellow);
+}
+
+h1 {
+    text-align: center;
+    padding-top: 50px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+.pLanding {
+    color: var(--color-blue);
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    line-height: 2;
+}
+
+.pLandingSecond {
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.containerCards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+th {
+    font-size: large;
+    color: var(--color-blue);
+}
+
+td {
+    height: 70px;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.validationButton {
+    color: var(--color-blue);
+    text-decoration: none;
+    background-color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    margin-top: 2rem;
+    border: none;
+}
+
+.validationButton:hover {
+    color: var(--color-yellow);
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.showButton {
+
+    color: var(--color-blue);
+    text-decoration: none;
+    background-color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border: none;
+}
+
+.showButton:hover {
+    color: var(--color-yellow);
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.deleteButton {
+    color: white;
+    text-decoration: none;
+    background-color: red;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border: none;
+}
+
+.deleteButton:hover {
+    color: red;
+    background-color: white;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.editButton {
+    color: white;
+    text-decoration: none;
+    background-color: green;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border: none;
+}
+
+.editButton:hover {
+    color: green;
+    background-color: white;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.topOfPageButton {
+    display:flex;
+    justify-content: center;
+    align-self: center;
+    margin:0;
+}
+
+@media screen and (max-width: 990px) {
+    th {
+        font-size: 0.8rem;
+        padding-left: 10px;
+    }
+
+    td {
+        padding-left: 10px;
+    }
+
+}

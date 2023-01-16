@@ -1,11 +1,19 @@
 .mainnav {
-    background-color: #003da5;
+    background-color: var(--color-blue);
     margin: 0;
-    width: 100% ;
+    width: 100%;
+}
+
+.nav-item {
+    list-style: none;
+    text-decoration: none;
+    margin-left: 10%;
 }
 
 .nav-link {
     color: white;
+    list-style: none;
+    text-decoration: none;
 }
 
 .nav-link:hover {
@@ -18,34 +26,33 @@
 }
 
 .logonavbar:hover {
-    color: #FFC905;
+    color: var(--color-yellow);
 }
 
-.w-50{
-    max-width: 90px;
+.connexion {
+    color: var(--color-blue);
+    text-decoration: none;
+    background-color: var(--color-yellow);
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    text-size-adjust: auto;
+}
+
+.connexion:hover {
+    background-color: white;
 }
 
 
-.navbar-toggler-icon{
-    color: #FFC905;
-}
 @media screen and (max-width: 600px) {
-    .threeicons {
+
+    .logonavbar {
         display: none;
     }
-    .userIcone, .signOutIcone {
-        width: 25%;
+
+    .connexion {
+        font-size: smaller;
     }
-    .mobilenav {
-        position: fixed;
-        bottom: 0vh;
-        width: 100%;
-    }
+
 }
 
-@media screen and (min-width: 601px) {
-
-    .mobilenav {
-        display: none;
-    }
-}
