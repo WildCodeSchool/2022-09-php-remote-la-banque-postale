@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 * {
     box-sizing: border-box;
@@ -10,11 +10,14 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
+    background-size: cover;
     background: linear-gradient(var(--color-yellow), white);
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
- }
+    font-family: 'Questrial', sans-serif;
+}
+
 main {
     margin-bottom: 25px;
 }
@@ -94,7 +97,7 @@ h3 {
 
 .pLanding {
     color: var(--color-blue);
-    font-size: 2em;
+    font-size: 1.5em;
     text-align: center;
     margin-left: 20%;
     margin-right: 20%;
@@ -144,6 +147,7 @@ td {
 }
 
 .showButton {
+
     color: var(--color-blue);
     text-decoration: none;
     background-color: white;
@@ -208,6 +212,7 @@ td {
         font-size: 0.8rem;
         padding-left: 10px;
     }
+
     td {
         padding-left: 10px;
     }
