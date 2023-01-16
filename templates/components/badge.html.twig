@@ -1,0 +1,9 @@
+{% if this.userhasgame %}
+	{% if this.useranswer == true %}
+		<img class="w-50" src="{{ asset('build/images/circle-check-solid.svg') }}">
+	{% else %}
+		<img class="w-50" src="{{ asset('build/images/circle-xmark-solid.svg') }}">
+	{% endif %}
+{% else %}
+	no game
+{% endif %}

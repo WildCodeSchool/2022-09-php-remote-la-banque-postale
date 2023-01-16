@@ -5,6 +5,9 @@
 
 {% block body %}
 
+	<a href="{{ path('category_level_show', {'slug': category.slug}) }}">
+		<button>Revenir à la page précédente</button>
+	</a>
 	{% if gameAnswers %}
 
 		{% if gameAnswers.answer.iscorrect == true %}
@@ -51,9 +54,7 @@
 
 	<br>
 	<br>
-	<a href="{{ path('category_level_show', {'slug': category.slug}) }}">
-		<button>Revenir à la page précédente</button>
-	</a>
+
 
 	<br>
 	<br>

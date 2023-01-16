@@ -5,10 +5,12 @@ namespace App\Entity;
 use App\Repository\TutorielRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TutorielRepository::class)]
+#[UniqueEntity(fields: ['title'], message: 'There is already tutoriel with this title')]
 class Tutoriel
 {
     #[ORM\Id]
@@ -16,7 +18,7 @@ class Tutoriel
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -32,7 +34,7 @@ class Tutoriel
     private Collection $comments;
 
     #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Question::class)]
-    private Collection $questions;
+    private ?Collection $questions;
 
     #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Favori::class)]
     private Collection $favoris;
@@ -138,7 +140,7 @@ class Tutoriel
     /**
      * @return Collection<int, Question>
      */
-    public function getQuestions(): Collection
+    public function getQuestions(): ?Collection
     {
         return $this->questions;
     }

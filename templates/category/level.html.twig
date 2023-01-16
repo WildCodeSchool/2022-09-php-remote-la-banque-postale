@@ -5,25 +5,13 @@
 
 
 {% block body %}
-<pre>
-    {# {{ dump(games) }}
-    {{ dump(gameAnswers) }}
-        {{ dump(app.user) }} #}
-        {{ dump(tutoriels) }}
-        {{ dump(tutoriels.2.questions.0.answers) }}
-        {{ dump(tutoriels.2.questions.0.answers.owner.gameAnswers.0.answer.id) }}
-        {{ dump(tutoriels.2.questions.0.answers.0.iscorrect) }}
-        {{ dump(tutoriels.2.questions.0.answers.0.id) }}
-</pre>
+
+	<a href="{{ path('app_category_index') }}">
+		<button>Revenir à la page précédente</button>
+	</a>
 
 	<h1>{{category.label}}</h1>
 
-{# {% if app.user.games %}
-    {% if answer.iscorrect && gameAnswer.answer.id == answer.id %}
-    <img class="w-50" src="{{ asset('build/images/circle-check-solid.svg') }}">
-    {% else %}
-    <img class="w-50" src="{{ asset('build/images/circle-xmark-solid.svg') }}">
-{% endif %} #}
 
 	{% for level in levels %}
 		<div class="accordion" id="accordionExample">
@@ -41,6 +29,11 @@
 									<div class="card" style="width: 18rem;">
 										<div class="card-body">
 											<h5 class="card-title">{{tutoriel.title}}</h5>
+											{{component('badge', {
+												tutoriel: tutoriel
+											})}}
+
+
 											<h6 class="card-subtitle mb-2 text-muted">{{tutoriel.id}}</h6>
 											<p class="card-text">{{tutoriel.description}}</p>
 											<a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="card-link">Voir la fiche
@@ -52,8 +45,8 @@
 						{% endfor %}
 					</div>
 				</div>
-            </div>
-        </div>
-		{% endfor %}
+			</div>
+		</div>
+	{% endfor %}
 
 {% endblock %}
