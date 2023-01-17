@@ -49,15 +49,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
     private Collection $comments;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Favori::class)]
-    private Collection $favoris;
+    #[ORM\ManyToMany(targetEntity: Tutoriel::class, inversedBy: 'learners')]
+    private Collection $favori;
 
     public function __construct()
     {
         $this->games = new ArrayCollection();
         $this->tickets = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->favoris = new ArrayCollection();
+        $this->favori = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -257,32 +257,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Favori>
+     * @return Collection<int, Tutoriel>
      */
-    public function getFavoris(): Collection
+    public function getFavori(): Collection
     {
-        return $this->favoris;
+        return $this->favori;
     }
 
-    public function addFavori(Favori $favori): self
+    public function addFavori(Tutoriel $tutoriel): self
     {
-        if (!$this->favoris->contains($favori)) {
-            $this->favoris->add($favori);
-            $favori->setUser($this);
+        if (!$this->favori->contains($tutoriel)) {
+            $this->favori->add($tutoriel);
         }
 
         return $this;
     }
 
-    public function removeFavori(Favori $favori): self
+    public function removeFavori(Tutoriel $tutoriel): self
     {
-        if ($this->favoris->removeElement($favori)) {
-            // set the owning side to null (unless already changed)
-            if ($favori->getUser() === $this) {
-                $favori->setUser(null);
-            }
-        }
+        $this->favori->removeElement($tutoriel);
 
         return $this;
+    }
+
+    public function isFavori(Tutoriel $tutoriel): bool
+    {
+        return $this->favori->contains($tutoriel);
     }
 }

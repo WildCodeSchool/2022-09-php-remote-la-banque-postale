@@ -29,6 +29,16 @@
 			</div>
 		{% endif %}
 
+		{% if app.user %}
+			<strong>
+				<p>Ajouter ce tutoriel aux favoris</p>
+			</strong>
+			<a id="favoris" class="favoris" href="{{ path('tutoriel_favoris', {id: tutoriel.id}) }}">
+				<img src="{{ app.user.isFavori(tutoriel) ? asset('build/images/star_full.png') : asset('build/images/star_empty.png') }}">
+			</a>
+		{% endif %}
+
+
 		<h1>Tutoriel
 			{{tutoriel.title}}</h1>
 
@@ -58,37 +68,33 @@
 		</a>
 
 
-			<br>
-			<br>
-			{% if app.user %}
+		{% if app.user %}
 
-				<h2 class="mt-5">Ajouter un commentaire</h2>
-				{{ form_start(formComment) }}
-				{{ form_widget(formComment) }}
-				<button class="validationButton" type="submit">Ajouter un commentaire</button>
+			<h2 class="mt-5">Ajouter un commentaire</h2>
+			{{ form_start(formComment) }}
+			{{ form_widget(formComment) }}
+			<button class="validationButton" type="submit">Ajouter un commentaire</button>
 
-				{{ form_end(formComment) }}
-			{% endif %}
-			
+			{{ form_end(formComment) }}
+		{% endif %}
 
-			{% for comment in tutoriel.comments %}
 
-				<div class="mt-5">
-					<h3>Postée par:
-						{{comment.user.firstname}}
-						le
-						{{comment.postedat.format('d/m/Y')}}</h3>
-					<div>
-						<p>{{comment.text|raw}}</p>
-					</div>
-					{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
-						<a class="editButton" href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
+		{% for comment in tutoriel.comments %}
 
-					{% endif %}
+			<div class="mt-5">
+				<h3>Postée par:
+					{{comment.user.firstname}}
+					le
+					{{comment.postedat.format('d/m/Y')}}</h3>
+				<div>
+					<p>{{comment.text|raw}}</p>
 				</div>
-			{% endfor %}
+				{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
+					<a class="editButton" href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
+				{% endif %}
+			</div>
+		{% endfor %}
 
-		</div>
-		
-	{% endblock %}
+	</div>
 
+{% endblock %}
