@@ -20,18 +20,17 @@ function addFavori(event) {
     event.preventDefault();
     const favoriLink = event.currentTarget;
     const link = favoriLink.href;
-    try {
-        fetch(link)
-            .then(response => response.json())
-            .then(data => {
-                const favoriIcon = favoriLink.firstElementChild;
 
-                if (data.isFavori) {
-                    favoriIcon.setAttribute('src', starFull);
-                } else {
-                    favoriIcon.setAttribute('src', starEmpty);
-                }
-            });
-    } catch (err) {
-    }
+    fetch(link)
+        .then(response => response.json())
+        .then(data => {
+            const favoriIcon = favoriLink.firstElementChild;
+
+            if (data.isFavori) {
+                favoriIcon.setAttribute('src', starFull);
+            } else {
+                favoriIcon.setAttribute('src', starEmpty);
+            }
+        });
+
 }
