@@ -35,6 +35,17 @@
 		</div>
 	{% endif %}
 	<div class="marginPage">
+		{% endif %}
+
+		{% if app.user %}
+			<strong>
+				<p>Ajouter ce tutoriel aux favoris</p>
+			</strong>
+			<a id="favoris" class="favoris" href="{{ path('tutoriel_favoris', {id: tutoriel.id}) }}">
+				<img src="{{ app.user.isFavori(tutoriel) ? asset('build/images/star_full.png') : asset('build/images/star_empty.png') }}">
+			</a>
+		{% endif %}
+
 		<h1>Tutoriel
 			{{tutoriel.title}}</h1>
 
@@ -63,8 +74,6 @@
 		<a class="siteButton" href="{{ path('category_level_show', {'slug': category.slug}) }}">Revenir à la page précédente
 		</a>
 
-		<br>
-		<br>
 		{% if app.user %}
 
 			<h2 class="mt-5">Ajouter un commentaire</h2>
@@ -74,6 +83,7 @@
 
 			{{ form_end(formComment) }}
 		{% endif %}
+
 
 		{% for comment in tutoriel.comments %}
 
@@ -87,9 +97,9 @@
 				</div>
 				{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
 					<a class="editButton" href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
-
 				{% endif %}
 			</div>
 		{% endfor %}
 	</div>
+
 {% endblock %}

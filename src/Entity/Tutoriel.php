@@ -36,21 +36,21 @@ class Tutoriel
     #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Question::class)]
     private ?Collection $questions;
 
-    #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Favori::class)]
-    private Collection $favoris;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favori')]
+    private Collection $learners;
+
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->questions = new ArrayCollection();
-        $this->favoris = new ArrayCollection();
+        $this->learners = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,36 +167,6 @@ class Tutoriel
         return $this;
     }
 
-    /**
-     * @return Collection<int, Favori>
-     */
-    public function getFavoris(): Collection
-    {
-        return $this->favoris;
-    }
-
-    public function addFavori(Favori $favori): self
-    {
-        if (!$this->favoris->contains($favori)) {
-            $this->favoris->add($favori);
-            $favori->setTutoriel($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavori(Favori $favori): self
-    {
-        if ($this->favoris->removeElement($favori)) {
-            // set the owning side to null (unless already changed)
-            if ($favori->getTutoriel() === $this) {
-                $favori->setTutoriel(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getContent(): ?string
     {
         return $this->content;
@@ -217,6 +187,33 @@ class Tutoriel
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLearners(): Collection
+    {
+        return $this->learners;
+    }
+
+    public function addLearner(User $learner): self
+    {
+        if (!$this->learners->contains($learner)) {
+            $this->learners->add($learner);
+            $learner->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLearner(User $learner): self
+    {
+        if ($this->learners->removeElement($learner)) {
+            $learner->removeFavori($this);
+        }
 
         return $this;
     }
