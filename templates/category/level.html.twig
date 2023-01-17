@@ -3,8 +3,15 @@
 {% block title %}Tutoriel
 {% endblock %}
 
+
 {% block body %}
+
+	<a href="{{ path('app_category_index') }}">
+		<button>Revenir à la page précédente</button>
+	</a>
+
 	<h1 class="mb-5">{{category.label}}</h1>
+
 
 	{% for level in levels %}
 		<div class="accordion" id="accordionExample">
@@ -24,6 +31,9 @@
 										<div class="card h-100">
 											<div class="card-body d-flex flex-column">
 												<h5 class="card-title">{{tutoriel.title}}</h5>
+                        {{component('badge', {
+												tutoriel: tutoriel
+											})}}
 												<h6 class="card-subtitle mb-2 text-muted">{{tutoriel.id}}</h6>
 												<p class="card-text">{{tutoriel.description}}</p>
 												<a
@@ -38,8 +48,8 @@
 						</div>
 					</div>
 				</div>
-            </div>
-        </div>
-		{% endfor %}
+			</div>
+		</div>
+	{% endfor %}
 
 {% endblock %}

@@ -5,6 +5,9 @@
 
 {% block body %}
 
+	<a href="{{ path('category_level_show', {'slug': category.slug}) }}">
+		<button>Revenir à la page précédente</button>
+	</a>
 	{% if gameAnswers %}
 
 		{% if gameAnswers.answer.iscorrect == true %}
@@ -53,6 +56,18 @@
 		<br>
 		<a class="siteButton" href="{{ path('category_level_show', {'slug': category.slug}) }}">Revenir à la page précédente
 		</a>
+
+	<br>
+	<br>
+
+
+	<br>
+	<br>
+	{% if app.user %}
+
+		<h2>Ajouter un commentaire</h2>
+		{{ form_start(formComment) }}
+		{{ form_widget(formComment) }}
 
 		<br>
 		<br>

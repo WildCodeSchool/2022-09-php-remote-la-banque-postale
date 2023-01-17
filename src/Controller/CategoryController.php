@@ -84,7 +84,6 @@ class CategoryController extends AbstractController
         }
         $tutoriel = $tutorielRepository->findBy(array('category' => $category));
         $level = $levelRepository->findAll();
-
         return $this->render('category/level.html.twig', [
             'category' => $category,
             'tutoriels' => $tutoriel,
