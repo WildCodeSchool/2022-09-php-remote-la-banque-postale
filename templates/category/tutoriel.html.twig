@@ -57,46 +57,38 @@
 		<a class="siteButton" href="{{ path('category_level_show', {'slug': category.slug}) }}">Revenir à la page précédente
 		</a>
 
-	<br>
-	<br>
 
+			<br>
+			<br>
+			{% if app.user %}
 
-	<br>
-	<br>
-	{% if app.user %}
+				<h2 class="mt-5">Ajouter un commentaire</h2>
+				{{ form_start(formComment) }}
+				{{ form_widget(formComment) }}
+				<button class="validationButton" type="submit">Ajouter un commentaire</button>
 
-		<h2>Ajouter un commentaire</h2>
-		{{ form_start(formComment) }}
-		{{ form_widget(formComment) }}
+				{{ form_end(formComment) }}
+			{% endif %}
+			
 
-		<br>
-		<br>
-		{% if app.user %}
+			{% for comment in tutoriel.comments %}
 
-			<h2 class="mt-5">Ajouter un commentaire</h2>
-			{{ form_start(formComment) }}
-			{{ form_widget(formComment) }}
-			<button class="validationButton" type="submit">Ajouter un commentaire</button>
+				<div class="mt-5">
+					<h3>Postée par:
+						{{comment.user.firstname}}
+						le
+						{{comment.postedat.format('d/m/Y')}}</h3>
+					<div>
+						<p>{{comment.text|raw}}</p>
+					</div>
+					{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
+						<a class="editButton" href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
 
-			{{ form_end(formComment) }}
-		{% endif %}
-
-		{% for comment in tutoriel.comments %}
-
-			<div class="mt-5">
-				<h3>Postée par:
-					{{comment.user.firstname}}
-					le
-					{{comment.postedat.format('d/m/Y')}}</h3>
-				<div>
-					<p>{{comment.text|raw}}</p>
+					{% endif %}
 				</div>
-				{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
-					<a class="editButton" href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
+			{% endfor %}
 
-				{% endif %}
-			</div>
-		{% endfor %}
+		</div>
+		
+	{% endblock %}
 
-	</div>
-{% endblock %}
