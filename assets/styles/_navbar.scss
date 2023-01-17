@@ -14,15 +14,24 @@
     color: white;
     list-style: none;
     text-decoration: none;
-}
-
-.nav-link:hover {
-    color: white;
-    filter: drop-shadow(0 0 0.75rem white);
+    i {
+        color: $yellow;
+    }
+    &:hover {
+        filter: drop-shadow(0 0 0.75rem white);
+        i {
+            color: white;
+        }
+    }
 }
 
 .logonavbar {
     color: white;
+    text-decoration: none;
+    line-height: 1.2;
+    @include media-breakpoint-down(lg) {
+        max-width: 120px;
+    }
 }
 
 .logonavbar:hover {
@@ -43,16 +52,8 @@
     background-color: white;
 }
 
-
 @media screen and (max-width: 600px) {
-
-    .logonavbar {
-        display: none;
-    }
-
     .connexion {
         font-size: smaller;
     }
-
 }
-
