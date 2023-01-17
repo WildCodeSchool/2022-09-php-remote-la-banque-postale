@@ -60,12 +60,24 @@ class AdminCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->save($category, true);
 
-            return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_app_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('category/admincategory/edit.html.twig', [
             'category' => $category,
             'form' => $form,
+        ]);
+    }
+    #[Route('/{slug}/', name: 'admin_app_category_show')]
+    public function show(string $slug, Category $category): Response
+    {
+        if (!$category instanceof Category) {
+            throw $this->createNotFoundException(
+                'Pas de catégorie nommée : ' . $slug
+            );
+        }
+        return $this->render('category/admincategory/show.html.twig', [
+            'category' => $category,
         ]);
     }
 
@@ -76,6 +88,6 @@ class AdminCategoryController extends AbstractController
             $categoryRepository->remove($category, true);
         }
 
-        return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_app_category_index', [], Response::HTTP_SEE_OTHER);
     }
 }

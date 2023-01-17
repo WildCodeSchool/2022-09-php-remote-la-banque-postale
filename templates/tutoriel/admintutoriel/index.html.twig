@@ -7,45 +7,53 @@
 
 	<h1>Administration des tutoriels</h1>
 
-<a href="{{ path('app_tutoriel_new') }}">Créer un nouveau tutoriel</a>
+	<a class="editButton" href="{{ path('app_tutoriel_new') }}">Créer un nouveau tutoriel</a>
 
-{% for level in levels %}
+	{% for level in levels %}
 
-<h2>Fiches de niveau {{level.name}}</h2>
+		<h2 class="mt-5">Fiches de niveau
+			{{level.name}}</h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Level</th>
-            <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
+		<table class="adminPanelTable">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Level</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
 
-        {% for tutoriel in tutoriels %}
-        {% if level.name == tutoriel.level.name %}
+				{% for tutoriel in tutoriels %}
+					{% if level.name == tutoriel.level.name %}
 
-            <tr>
-                <td>{{ tutoriel.id }}</td>
-                <td>{{ tutoriel.title }}</td>
-                <td>{{ tutoriel.description|raw }}</td>
-                <td>{{ tutoriel.level.name}}</td>
-                <td>
-                    <a href="{{ path('app_tutoriel_show', {'id': tutoriel.id}) }}">Voir</a>
-                    <a href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}">Éditer</a>
-                    <br>
-                    {{ include('tutoriel/admintutoriel/_delete_form.html.twig') }}
-                </td>
-            </tr>
-            {% endif %}
-        {% endfor %}
+						<tr>
+							<td>{{ tutoriel.id }}</td>
+							<td>{{ tutoriel.title }}</td>
+							<td>{{ tutoriel.description|raw }}</td>
+							<td>{{ tutoriel.level.name}}</td>
+							<td>
+								<div class="d-inline-flex">
+									<div class="d-flex align-self-center p-2">
+										<a class="showButton" href="{{ path('app_tutoriel_show', {'id': tutoriel.id}) }}" aria-label="voir">Voir</a>
+									</div>
+									<div class="d-flex align-self-center p-2">
+										<a class="editButton" href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}" aria-label="editer">Éditer</a>
+									</div>
+									<div class="d-flex align-self-center p-2">
+										{{ include('tutoriel/admintutoriel/_delete_form.html.twig') }}
+									</div>
+								</div>
+							</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
 
-        </tbody>
-    </table>
+			</tbody>
+		</table>
 
-{% endfor %}
+	{% endfor %}
 
 {% endblock %}
