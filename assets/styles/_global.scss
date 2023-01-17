@@ -71,6 +71,7 @@ main {
 }
 
 .siteButton {
+    display: inline-block;
     color: white;
     text-decoration: none;
     background-color: var(--color-blue);
@@ -204,11 +205,10 @@ td {
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
-.topOfPageButton {
-    display:flex;
-    justify-content: center;
-    align-self: center;
-    margin:0;
+.marginPage {
+    margin-left: 10rem;
+    margin-right: 10rem;
+    text-align: justify;
 }
 
 @media screen and (max-width: 990px) {
@@ -220,10 +220,16 @@ td {
     td {
         padding-left: 10px;
     }
+
     main {
         margin-left: 10px;
         margin-right: 10px;
         margin-top: 0;
+    }
+
+    .marginPage {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
 }
