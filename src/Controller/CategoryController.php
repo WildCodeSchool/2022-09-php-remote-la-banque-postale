@@ -25,6 +25,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\SearchTutorielsType;
+use App\Repository\UserRepository;
+use PHPMD\Renderer\JSONRenderer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/category')]
 class CategoryController extends AbstractController
@@ -161,6 +164,32 @@ class CategoryController extends AbstractController
             'formComment' => $formComment->createView(),
             'gameAnswers' => $gameAnswer
 
+        ]);
+    }
+
+    #[Route('/{id}/favoris', name: 'tutoriel_favoris')]
+    public function addToFavoris(Tutoriel $tutoriel, UserRepository $userRepository): JsonResponse|bool
+    {
+
+        $user = $this->getUser();
+        if (!$tutoriel instanceof Tutoriel) {
+            throw $this->createNotFoundException(
+                'Pas de tutoriel avec cet id'
+            );
+        }
+        /**
+         * @var User $user
+         */
+        $user = $this->getUser();
+        if ($user->isFavori($tutoriel)) {
+            $user->removeFavori($tutoriel);
+        } else {
+            $user->addFavori($tutoriel);
+        }
+        $userRepository->save($user, true);
+
+        return $this->json([
+            'isFavori' => $user->isFavori($tutoriel)
         ]);
     }
 }

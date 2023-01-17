@@ -28,5 +28,9 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.6"
-    }
+    },
+
+    "rules": {
+        "no-console": "off"
+      }
 }

@@ -29,6 +29,15 @@
 			</div>
 		{% endif %}
 
+	{% if app.user %}
+		<strong><p>Ajouter ce tutoriel au favoris</p></strong>
+		<a id ="favoris" class="favoris" href="{{ path('tutoriel_favoris', {id: tutoriel.id}) }}">
+			<img src="{{ app.user.isFavori(tutoriel) ? asset('build/images/star_full.png') : asset('build/images/star_empty.png') }}">
+		</a>
+	{% endif %}
+
+
+
 		<h1>Tutoriel
 			{{tutoriel.title}}</h1>
 
@@ -60,17 +69,6 @@
 	<br>
 	<br>
 
-
-	<br>
-	<br>
-	{% if app.user %}
-
-		<h2>Ajouter un commentaire</h2>
-		{{ form_start(formComment) }}
-		{{ form_widget(formComment) }}
-
-		<br>
-		<br>
 		{% if app.user %}
 
 			<h2 class="mt-5">Ajouter un commentaire</h2>
