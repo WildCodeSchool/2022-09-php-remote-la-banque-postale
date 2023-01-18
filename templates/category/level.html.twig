@@ -6,12 +6,13 @@
 
 {% block body %}
 
-	<a href="{{ path('app_category_index') }}">
-		<button>Revenir à la page précédente</button>
-	</a>
+	<div class="containerButtonCentered">
+		<a class="siteButton" href="{{ path('app_category_index') }}" aria-label="retour">
+			Revenir à la page précédente
+		</a>
+	</div>
 
 	<h1 class="mb-5">{{category.label}}</h1>
-
 
 	{% for level in levels %}
 		<div class="accordion" id="accordionExample">

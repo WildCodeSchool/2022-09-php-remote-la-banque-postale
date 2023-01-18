@@ -4,10 +4,11 @@
 {% endblock %}
 
 {% block body %}
-
-	<a href="{{ path('category_level_show', {'slug': category.slug}) }}">
-		<button>Revenir à la page précédente</button>
-	</a>
+	<div class="containerButtonCentered">
+		<a class="siteButton" href="{{ path('category_level_show', {'slug': category.slug}) }}" aria-label="retour">
+			Revenir à la page précédente
+		</a>
+	</div>
 	{% if gameAnswers %}
 
 		{% if gameAnswers.answer.iscorrect == true %}
@@ -21,12 +22,19 @@
 
 		{% endif %}
 	{% endif %}
-	<div class="tutoPage">
-		{% if is_granted("ROLE_ADMIN") %}
-			<div class="editAndDelete">
-				<a class="siteButton" href="{{path('app_tutoriel_edit',{'id':tutoriel.id})}}">Éditer le tutoriel</a>
-				<a class="siteButton" href="{{path('app_tutoriel_delete',{'id':tutoriel.id})}}">Supprimer le tutoriel</a>
+	{% if is_granted("ROLE_ADMIN") %}
+		<div class="containerButtonCentered">
+			<div class="d-inline-flex">
+				<div class="d-flex align-self-center p-2">
+					<a class="editButton" href="{{path('app_tutoriel_edit',{'id':tutoriel.id})}}">Éditer le tutoriel</a>
+				</div>
+				<div class="d-flex align-self-center p-2">
+					<a class="deleteButton" href="{{path('app_tutoriel_delete',{'id':tutoriel.id})}}">Supprimer le tutoriel</a>
+				</div>
 			</div>
+		</div>
+	{% endif %}
+	<div class="marginPage">
 		{% endif %}
 
 		{% if app.user %}
@@ -37,7 +45,6 @@
 				<img src="{{ app.user.isFavori(tutoriel) ? asset('build/images/star_full.png') : asset('build/images/star_empty.png') }}">
 			</a>
 		{% endif %}
-
 
 		<h1>Tutoriel
 			{{tutoriel.title}}</h1>
@@ -67,7 +74,6 @@
 		<a class="siteButton" href="{{ path('category_level_show', {'slug': category.slug}) }}">Revenir à la page précédente
 		</a>
 
-
 		{% if app.user %}
 
 			<h2 class="mt-5">Ajouter un commentaire</h2>
@@ -94,7 +100,6 @@
 				{% endif %}
 			</div>
 		{% endfor %}
-
 	</div>
 
 {% endblock %}

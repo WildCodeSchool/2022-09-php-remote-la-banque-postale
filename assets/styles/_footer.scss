@@ -3,11 +3,12 @@ footer {
     background-color:rgba(255, 255, 255, 0);
     color:#4b4c4d;
     border-top: 1px solid #ccc;
-    bottom: 0;
-    max-height: 120px;
     width: 100vw;
     font-size: small;
     margin-top: auto;
+    @include media-breakpoint-down(lg) {
+      padding-bottom: 100px;
+    }
   }
 
   .aFooter {
