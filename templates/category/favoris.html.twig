@@ -14,14 +14,14 @@
 
 	{% else %}
 		{% for favori in app.user.favori %}
-			{% dump(favori) %}
+
 			<div class="col-lg-3 col-md-4 mb-3">
 				<div class="card h-100">
 					<div class="card-body d-flex flex-column">
 						<h5 class="card-title">{{favori.title}}</h5>
-						<a id="favoris" class="favoris" href="{{ path('tutoriel_favoris', {id: favori.id}) }}">
-							<img src="{{ app.user.isFavori(favori) ? asset('build/images/star_full.png') : asset('build/images/star_empty.png') }}">
-						</a>
+						{{ component('favori', {
+							tutoriel: favori
+						})}}
 
 						<h6 class="card-subtitle mb-2 text-muted">{{favori.id}}</h6>
 						<p class="card-text">{{favori.description}}</p>

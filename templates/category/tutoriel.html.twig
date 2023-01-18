@@ -35,15 +35,14 @@
 		</div>
 	{% endif %}
 	<div class="marginPage">
-		{% endif %}
 
 		{% if app.user %}
 			<strong>
 				<p>Ajouter ce tutoriel aux favoris</p>
 			</strong>
-			<a id="favoris" class="favoris" href="{{ path('tutoriel_favoris', {id: tutoriel.id}) }}">
-				<img src="{{ app.user.isFavori(tutoriel) ? asset('build/images/star_full.png') : asset('build/images/star_empty.png') }}">
-			</a>
+			{{ component('favori', {
+				tutoriel: tutoriel
+			})}}
 		{% endif %}
 
 		<h1>Tutoriel
