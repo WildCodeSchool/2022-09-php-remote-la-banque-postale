@@ -10,17 +10,19 @@
 	</h1>
 	<div class="container">
 		<div class="blocContainer">
+		{% if app.user %}
 			{% set links = [] %}
 			{%	set links = links|merge(
 					[
 						{
 							'label': 'Mes favoris',
-							'path': path('app_landing'),
+							'path': path('app_favoris'),
 							'img': asset('build/images/categories-blocs/favoris.svg')
 						}
 					]
 				)
 			%}
+			{% endif %}
 			{% for category in categories %}
 				{%	set links = links|merge(
 						[

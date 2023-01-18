@@ -31,14 +31,17 @@
 										<div class="card h-100">
 											<div class="card-body d-flex flex-column">
 												<h5 class="card-title">{{tutoriel.title}}</h5>
-                        {{component('badge', {
+												{% if app.user %}
+													<a id="favoris" class="favoris" href="{{ path('tutoriel_favoris', {id: tutoriel.id}) }}">
+														<img src="{{ app.user.isFavori(tutoriel) ? asset('build/images/star_full.png') : asset('build/images/star_empty.png') }}">
+													</a>
+												{% endif %}
+												{{component('badge', {
 												tutoriel: tutoriel
 											})}}
 												<h6 class="card-subtitle mb-2 text-muted">{{tutoriel.id}}</h6>
 												<p class="card-text">{{tutoriel.description}}</p>
-												<a
-												href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}"
-												class="siteButton mt-auto">Voir la fiche
+												<a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="siteButton mt-auto">Voir la fiche
 													{{tutoriel.title}}</a>
 											</div>
 										</div>
@@ -51,5 +54,4 @@
 			</div>
 		</div>
 	{% endfor %}
-
 {% endblock %}

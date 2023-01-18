@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes favoris
+{% endblock %}
+
+
+{% block body %}
+
+	{% if app.user.favori is empty %}
+
+		<h1>Vous n'avez pas encore de fiche tutoriel ajouté en favoris. 
+        <br>
+        Cliquez sur l'étoile vide d'une fiche afin de la rajoutez ici !</h1>
+
+	{% else %}
+		{% for favori in app.user.favori %}
+			{% dump(favori) %}
+			<div class="col-lg-3 col-md-4 mb-3">
+				<div class="card h-100">
+					<div class="card-body d-flex flex-column">
+						<h5 class="card-title">{{favori.title}}</h5>
+						<a id="favoris" class="favoris" href="{{ path('tutoriel_favoris', {id: favori.id}) }}">
+							<img src="{{ app.user.isFavori(favori) ? asset('build/images/star_full.png') : asset('build/images/star_empty.png') }}">
+						</a>
+
+						<h6 class="card-subtitle mb-2 text-muted">{{favori.id}}</h6>
+						<p class="card-text">{{favori.description}}</p>
+						<a href="{{ path('level_tutoriel_show', {"category_slug": favori.category.slug, "tutoriel_slug" : favori.slug }) }}" class="siteButton mt-auto">Voir la fiche
+							{{favori.title}}</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+
+	{% endif %}
+{% endblock %}
