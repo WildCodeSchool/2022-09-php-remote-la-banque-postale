@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Twig;
+namespace App\Twig\Components;
 
 use App\Entity\Game;
-use App\Entity\Question;
 use App\Entity\Tutoriel;
-use App\Entity\GameAnswer;
 use App\Repository\GameRepository;
 use App\Repository\GameAnswerRepository;
 use Symfony\Component\Security\Core\Security;
