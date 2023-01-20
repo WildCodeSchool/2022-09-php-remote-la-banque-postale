@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class TutorielType extends AbstractType
 {
@@ -23,7 +24,19 @@ class TutorielType extends AbstractType
                 'category',
                 null,
                 ['choice_label' => 'label']
-            );
+            )
+            ->add('questions', CollectionType::class, [
+                'entry_type' => QuestionType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false
+            ]);
+                        // ->add('answers', CollectionType::class, [
+            //     'entry_type' => AnswerType::class,
+            //     'allow_add' => true,
+            //     'allow_delete' => true,
+            //     'by_reference' => false
+            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -1,0 +1,34 @@
+<div{{attributes}}>
+	{{ form_start(form) }}
+
+	{{form_row(form.title)}}
+	{{form_row(form.description)}}
+	{{form_row(form.content)}}
+	{{form_row(form.level)}}
+	{{form_row(form.category)}}
+
+	<fieldset>
+		<h3>Question</h3>
+		{% if form.questions is not empty %}
+			{% for key, question in form.questions %}
+				<div class="input-group mb-3">
+					{{form_widget(question.content)}}
+					<button class="deleteButton" type="button" data-action="live#action" data-action-name="removeQuestion(index={{ key }})">supprimer la question</button>
+				</div>
+			{% endfor %}
+		{% endif %}
+		{% if form.questions is empty %}
+			{% for key, question in form.questions %}
+				{{form_widget(question.content)}}
+				<button class="validationButton" type="button" data-action="live#action" data-action-name="addQuestion()">
+					Ajouter une question</button>
+			{% endfor %}
+		{% endif %}
+	</fieldset>
+	<br>
+	<br>
+
+	{{ form_widget(form) }}
+	<button class="editButton">{{ button_label|default('Sauvegarder les ajouts') }}</button>
+	{{ form_end(form) }}
+</div>

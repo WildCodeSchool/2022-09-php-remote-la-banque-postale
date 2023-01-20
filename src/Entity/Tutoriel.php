@@ -33,7 +33,7 @@ class Tutoriel
     #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Comment::class)]
     private Collection $comments;
 
-    #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Question::class)]
+    #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Question::class, cascade: ['persist'])]
     private ?Collection $questions;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

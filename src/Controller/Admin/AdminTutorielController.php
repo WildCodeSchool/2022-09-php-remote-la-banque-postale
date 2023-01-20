@@ -56,10 +56,10 @@ class AdminTutorielController extends AbstractController
     #[Route('/{id}/edit', name: 'app_tutoriel_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tutoriel $tutoriel, TutorielRepository $tutorielRepository): Response
     {
-        $tutorielForm = $this->createForm(TutorielType::class, $tutoriel);
-        $tutorielForm->handleRequest($request);
+        $form = $this->createForm(TutorielType::class, $tutoriel);
+        $form->handleRequest($request);
 
-        if ($tutorielForm->isSubmitted() && $tutorielForm->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $tutorielRepository->save($tutoriel, true);
 
             return $this->redirectToRoute('app_tutoriel_index', [], Response::HTTP_SEE_OTHER);
@@ -67,7 +67,7 @@ class AdminTutorielController extends AbstractController
 
         return $this->renderForm('tutoriel/admintutoriel/edit.html.twig', [
             'tutoriel' => $tutoriel,
-            'tutorielForm' => $tutorielForm,
+            'form' => $form,
         ]);
     }
 
