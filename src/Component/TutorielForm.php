@@ -28,13 +28,13 @@ class TutorielForm extends AbstractController
     }
 
     #[LiveAction]
-    public function addQuestion()
+    public function addQuestion(): void
     {
         $this->formValues['questions'] [] = '';
     }
 
     #[LiveAction]
-    public function removeQuestion(#[LiveArg()] int $index)
+    public function removeQuestion(#[LiveArg()] int $index): void
     {
         unset($this->formValues['questions'] [$index]);
     }
