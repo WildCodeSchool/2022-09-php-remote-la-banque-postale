@@ -8,11 +8,11 @@
 	<div class="marginPage">
 		<h1>Administation des categories</h1>
 		<div class="containerButtonCentered">
-			<a class="validationButton" href="{{ path('app_category_new') }}">Créer une nouvelle catégorie</a>
+			<a class="validationButton" href="{{ path('app_category_new') }}" title="créer">Créer une nouvelle catégorie</a>
 		</div>
 		<div class="container">
 			<div class="d-flex justify-content-center align-items-center">
-				<table class="adminPanelTable" align="center">
+				<table class="table" align="center">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -25,7 +25,7 @@
 							<tr>
 								<td>{{ category.id }}</td>
 								<td>{{ category.label }}</td>
-								<td>
+								<td class="text-end">
 									<div class="d-inline-flex">
 										<div class="d-flex align-self-center p-2">
 											<a class="showButton" href="{{ path('admin_app_category_show', {'slug': category.slug}) }}">Voir</a>
