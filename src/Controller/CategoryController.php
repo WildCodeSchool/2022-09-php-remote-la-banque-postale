@@ -82,7 +82,7 @@ class CategoryController extends AbstractController
 
         if (!$category instanceof Category) {
             throw $this->createNotFoundException(
-                'Pas de catégorie nommée : ' . $slug . ' found in category\'s table.'
+                'Pas de catégorie nommée : ' . $slug . ' '
             );
         }
         $tutoriel = $tutorielRepository->findBy(array('category' => $category));

@@ -32,9 +32,12 @@
 										<div class="card h-100">
 											<div class="card-body d-flex flex-column">
 												<h5 class="card-title">{{tutoriel.title}}</h5>
+												{{ component('favori', {
+													tutoriel: tutoriel
+												})}}
 												{{component('badge', {
-												tutoriel: tutoriel
-											})}}
+													tutoriel: tutoriel
+												})}}
 												<h6 class="card-subtitle mb-2 text-muted">{{tutoriel.id}}</h6>
 												<p class="card-text">{{tutoriel.description}}</p>
 												<a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="siteButton mt-auto">Voir la fiche
@@ -50,5 +53,4 @@
 			</div>
 		</div>
 	{% endfor %}
-
 {% endblock %}
