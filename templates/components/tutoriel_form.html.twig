@@ -10,23 +10,39 @@
 	<fieldset>
 		<h3>Question</h3>
 		{% if form.questions is not empty %}
-			{% for key, question in form.questions %}
+			{% for questionKey, question in form.questions %}
 				<div class="input-group mb-3">
 					{{form_widget(question.content)}}
-					<button class="deleteButton" type="button" data-action="live#action" data-action-name="removeQuestion(index={{ key }})">supprimer la question</button>
+					<button class="deleteButton" type="button" data-action="live#action" data-action-name="removeQuestion(index={{ questionKey }})">
+						supprimer la question
+					</button>
 				</div>
+				<h4>Réponses</h4>
+				<ul class="mb-0">
+					{% for answerKey, answer in question.answers %}
+						<li class="mb-2">
+							<div class="input-group mb-3">
+								{{ form_widget(answer.content) }}
+								<button class="deleteButton" type="button" data-action="live#action" data-action-name="removeAnswer(questionIndex={{ questionKey }}, answerIndex={{ answerKey}})">
+									supprimer cette réponse
+								</button>
+							</div>
+
+							{{ form_widget(answer.iscorrect) }}
+						</li>
+
+					{% endfor %}
+				</ul>
+				<button class="validationButton mb-2 mt-2" type="button" data-action="live#action" data-action-name="addAnswer(questionIndex={{ questionKey }})">
+					Ajouter une réponse</button>
 			{% endfor %}
 		{% endif %}
 		{% if form.questions is empty %}
-			{% for key, question in form.questions %}
-				{{form_widget(question.content)}}
-				<button class="validationButton" type="button" data-action="live#action" data-action-name="addQuestion()">
-					Ajouter une question</button>
-			{% endfor %}
+			<button class="validationButton" type="button" data-action="live#action" data-action-name="addQuestion()">
+				Ajouter une question</button>
+
 		{% endif %}
 	</fieldset>
-	<br>
-	<br>
 
 	{{ form_widget(form) }}
 	<button class="editButton">{{ button_label|default('Sauvegarder les ajouts') }}</button>

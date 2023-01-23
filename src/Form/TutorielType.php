@@ -31,12 +31,7 @@ class TutorielType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ]);
-                        // ->add('answers', CollectionType::class, [
-            //     'entry_type' => AnswerType::class,
-            //     'allow_add' => true,
-            //     'allow_delete' => true,
-            //     'by_reference' => false
-            // ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

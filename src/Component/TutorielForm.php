@@ -19,7 +19,7 @@ class TutorielForm extends AbstractController
     use DefaultActionTrait;
     use LiveCollectionTrait;
 
-    #[LiveProp(fieldName: 'tutorielField')]
+    #[LiveProp(fieldName: 'tutorielField', dehydrateWith: 'dehydrateWith')]
     public ?Tutoriel $tutoriel = null;
 
     protected function instantiateForm(): FormInterface
@@ -27,15 +27,31 @@ class TutorielForm extends AbstractController
         return $this->createForm(TutorielType::class, $this->tutoriel);
     }
 
+    public function dehydrateWith(): void
+    {
+    }
+
     #[LiveAction]
     public function addQuestion(): void
     {
-        $this->formValues['questions'] [] = '';
+        $this->formValues['questions'][] = '';
     }
 
     #[LiveAction]
     public function removeQuestion(#[LiveArg()] int $index): void
     {
-        unset($this->formValues['questions'] [$index]);
+        unset($this->formValues['questions'][$index]);
+    }
+
+    #[LiveAction]
+    public function addAnswer(#[LiveArg()] int $questionIndex): void
+    {
+        $this->formValues['questions'][$questionIndex]['answers'][] = '';
+    }
+
+    #[LiveAction]
+    public function removeAnswer(#[LiveArg()] int $questionIndex, #[LiveArg()] int $answerIndex): void
+    {
+        unset($this->formValues['questions'][$questionIndex]['answers'][$answerIndex]);
     }
 }
