@@ -5,23 +5,10 @@
 
 {% block body %}
 	<div class="containerButtonCentered">
-		<a class="siteButton" href="{{ path('category_level_show', {'slug': category.slug}) }}" aria-label="retour">
+		<a class="siteButton" href="{{ path('category_level_show', {'slug': category.slug}) }}" title="retour">
 			Revenir à la page précédente
 		</a>
 	</div>
-	{% if gameAnswers %}
-
-		{% if gameAnswers.answer.iscorrect == true %}
-
-			<img class="w-50" src="{{ asset('build/images/circle-check-solid.svg') }}">
-			<p>validé</p>
-
-		{% else %}
-			<img class="w-50" src="{{ asset('build/images/circle-xmark-solid.svg') }}">
-			<p>faux</p>
-
-		{% endif %}
-	{% endif %}
 	{% if is_granted("ROLE_ADMIN") %}
 		<div class="containerButtonCentered">
 			<div class="d-inline-flex">
@@ -37,12 +24,14 @@
 	<div class="marginPage">
 
 		{% if app.user %}
-			<strong>
-				<p>Ajouter ce tutoriel aux favoris</p>
-			</strong>
-			{{ component('favori', {
+			<div class="mt-3 text-center">
+				<strong>
+					<p>Ajouter ce tutoriel aux favoris</p>
+				</strong>
+				{{ component('favori', {
 				tutoriel: tutoriel
 			})}}
+			</div>
 		{% endif %}
 
 		<h1>Tutoriel
@@ -66,12 +55,21 @@
 				<button class="validationButton" type="submit">Valider ma réponse</button>
 			</div>
 		</form>
+		{% if gameAnswers %}
 
+			{% if gameAnswers.answer.iscorrect == true %}
+				<div class="d-inline-block text-center mt-3">
+					<img class="svgCheckOrNot" src="{{ asset('build/images/circle-check-solid.svg') }}">
+					<p>validé</p>
+				</div>
+			{% else %}
+				<div class="d-inline-block text-center mt-3">
+					<img class="svgCheckOrNot" src="{{ asset('build/images/circle-xmark-solid.svg') }}">
+					<p>faux</p>
+				</div>
 
-		<br>
-		<br>
-		<a class="siteButton" href="{{ path('category_level_show', {'slug': category.slug}) }}">Revenir à la page précédente
-		</a>
+			{% endif %}
+		{% endif %}
 
 		{% if app.user %}
 
