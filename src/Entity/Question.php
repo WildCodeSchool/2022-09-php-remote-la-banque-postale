@@ -22,7 +22,7 @@ class Question
     #[ORM\ManyToOne(inversedBy: 'questions')]
     private ?Tutoriel $tutoriel = null;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, cascade: ["persist"])]
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, cascade: ['persist', 'remove'])]
     private Collection $answers;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: GameAnswer::class)]

@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Answer;
 use App\Entity\Question;
 use App\Entity\Tutoriel;
-
 use App\Form\TutorielType;
 use App\Repository\LevelRepository;
 use App\Repository\AnswerRepository;
@@ -63,40 +62,59 @@ class AdminTutorielController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_tutoriel_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Tutoriel $tutoriel, TutorielRepository $tutorielRepository, EntityManagerInterface $entityManager): Response
-    {
+    public function edit(
+        Request $request,
+        Tutoriel $tutoriel,
+        TutorielRepository $tutorielRepository,
+        AnswerRepository $answerRepository,
+        QuestionRepository $questionRepository,
+    ): Response {
 
-        // $answer = new Answer;
-        $question = new Question;
+        $questionCollection = new ArrayCollection();
+        foreach ($tutoriel->getQuestions() as $question) {
+            $questionCollection->add($question);
+        }
+
         $answersCollection = new ArrayCollection();
-        foreach ($question->getAnswers() as $answer) {
-            $answersCollection->add($answer);
+
+
+        $question = $tutoriel->getQuestions()[0];
+        if ($question) {
+            foreach ($question->getAnswers() as $answer) {
+                $answersCollection->add($answer);
+            }
         }
 
         $form = $this->createForm(TutorielType::class, $tutoriel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            foreach ($answersCollection as $answer) {
-                if (false === $question->getAnswers()->contains($answer)) {
-                    // remove the Task from the Tag
-                    $answer->setQuestion(null);
-                    $entityManager->remove($answer);
+            foreach ($questionCollection as $question) {
+                if (false === $tutoriel->getQuestions()->contains($question)) {
+                    $question->setTutoriel(null);
+                    $questionRepository->remove($question, true);
                 }
             }
 
-                $tutorielRepository->save($tutoriel, true);
 
-                return $this->redirectToRoute('app_tutoriel_index', [], Response::HTTP_SEE_OTHER);
-            
+            $question = $tutoriel->getQuestions()[0];
+            foreach ($answersCollection as $answer) {
+                if ($question && false === $question->getAnswers()->contains($answer)) {
+                    // remove the answer from the question
+                    $answer->setQuestion(null);
+                    $answerRepository->remove($answer, true);
+                }
             }
-            
-            return $this->renderForm('tutoriel/admintutoriel/edit.html.twig', [
-                'tutoriel' => $tutoriel,
-                'form' => $form,
-            ]);
-        
+
+            $tutorielRepository->save($tutoriel, true);
+
+            return $this->redirectToRoute('app_tutoriel_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('tutoriel/admintutoriel/edit.html.twig', [
+            'tutoriel' => $tutoriel,
+            'form' => $form,
+        ]);
     }
 
     #[Route('/{id}', name: 'app_tutoriel_delete', methods: ['POST'])]
