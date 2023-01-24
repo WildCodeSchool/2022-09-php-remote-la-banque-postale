@@ -27,12 +27,10 @@ class PageFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-        foreach (self::PAGES as $key => $pageName) {
+         {
             $page = new Page();
-            $page->setTitle($pageName['title']);
             $page->setContent($faker->paragraphs(10, true));
             $manager->persist($page);
-            $this->addReference('page_' . $key, $page);
         }
 
         $manager->flush();
