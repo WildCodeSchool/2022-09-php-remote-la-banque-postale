@@ -1,4 +1,5 @@
 <footer>
+
 	<div class="container d-flex align-items-center">
 		<div class="mb-3">
 			<a class="d-flex align-items-center text-decoration-none" href="/" aria-label="La ligne bleue">
@@ -9,10 +10,10 @@
 
 		<div class="mx-auto">
 			<div class="divAFooter d-flex align-content-center mx-auto flex-wrap">
-				<a class="aFooter" href="">Plan du site</a>
-				<a class="aFooter" href="">Mentions contractuelles</a>
-				<a class="aFooter" href="">Mentions légales</a>
-				<a class="aFooter" href="">Données personnelles et cookies</a>
+				<a class="aFooter" href="{{ path('page_show', { "id" : 1 })}}">Plan du site</a>
+				<a class="aFooter" href="{{ path('page_show', { "id" : 2 })}}">Mentions contractuelles</a>
+				<a class="aFooter" href="{{ path('page_show', { "id" : 3 })}}">Mentions légales</a>
+				<a class="aFooter" href="{{ path('page_show', { "id" : 4 })}}">Données personnelles et cookies</a> 
 				{% if app.user %}
 					<a class="aFooter" href="{{ path('app_ticket_new') }}">Signaler un bug</a>
 				{% endif %}
