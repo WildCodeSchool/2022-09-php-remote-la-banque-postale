@@ -75,15 +75,14 @@ class AdminTutorielController extends AbstractController
             $questionCollection->add($question);
         }
 
-        $answersCollection = new ArrayCollection();
-
-
-        $question = $tutoriel->getQuestions()[0];
-        if ($question) {
-            foreach ($question->getAnswers() as $answer) {
-                $answersCollection->add($answer);
-            }
-        }
+        // $answersCollection = new ArrayCollection();
+        $fetchQuestion = $tutoriel->getQuestions()[0];
+        // if ($question) {
+        //     foreach ($question->getAnswers() as $answer) {
+        //         $answersCollection->add($answer);
+        //     }
+        // }
+        $answersCollection = $this->answerInArray($fetchQuestion);
 
         $form = $this->createForm(TutorielType::class, $tutoriel);
         $form->handleRequest($request);
@@ -115,6 +114,17 @@ class AdminTutorielController extends AbstractController
             'tutoriel' => $tutoriel,
             'form' => $form,
         ]);
+    }
+
+    private function answerInArray(Question $fetchQuestion): ArrayCollection
+    {
+        $answersCollection = new ArrayCollection();
+        if ($fetchQuestion instanceof Question) {
+            foreach ($fetchQuestion->getAnswers() as $answer) {
+                $answersCollection->add($answer);
+            }
+            return $answersCollection;
+        }
     }
 
     #[Route('/{id}', name: 'app_tutoriel_delete', methods: ['POST'])]
