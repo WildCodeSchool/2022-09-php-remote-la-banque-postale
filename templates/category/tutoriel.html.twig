@@ -13,10 +13,10 @@
 		<div class="containerButtonCentered">
 			<div class="d-inline-flex">
 				<div class="d-flex align-self-center p-2">
-					<a class="editButton" href="{{path('app_tutoriel_edit',{'id':tutoriel.id})}}">Éditer le tutoriel</a>
+					<a class="editButton" href="{{path('app_tutoriel_edit',{'id':tutoriel.id})}}" title="éditer">Éditer le tutoriel</a>
 				</div>
 				<div class="d-flex align-self-center p-2">
-					<a class="deleteButton" href="{{path('app_tutoriel_delete',{'id':tutoriel.id})}}">Supprimer le tutoriel</a>
+					<a class="deleteButton" href="{{path('app_tutoriel_delete',{'id':tutoriel.id})}}" title="supprimer">Supprimer le tutoriel</a>
 				</div>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 			{% endfor %}
 
 			<div>
-				<button class="validationButton" type="submit">Valider ma réponse</button>
+				<button class="validationButton" type="submit" title="valider">Valider ma réponse</button>
 			</div>
 		</form>
 		{% if gameAnswers %}
@@ -76,7 +76,7 @@
 			<h2 class="mt-5">Ajouter un commentaire</h2>
 			{{ form_start(formComment) }}
 			{{ form_widget(formComment) }}
-			<button class="validationButton" type="submit">Ajouter un commentaire</button>
+			<button class="validationButton" type="submit" title="ajouter un commentaire">Ajouter un commentaire</button>
 
 			{{ form_end(formComment) }}
 		{% endif %}
@@ -93,7 +93,7 @@
 					<p>{{comment.text|raw}}</p>
 				</div>
 				{% if is_granted("ROLE_ADMIN") or comment.user == app.user %}
-					<a class="editButton" href="{{ path('app_comment_edit', {'id': comment.id}) }}">Editer</a>
+					<a class="editButton" href="{{ path('app_comment_edit', {'id': comment.id}) }}" title="éditer le commentaire">Editer</a>
 				{% endif %}
 			</div>
 		{% endfor %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LoginController!
+{% block title %}Se connecter
 {% endblock %}
 
 
@@ -39,7 +39,7 @@
 
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-			<button class="siteButton m-1 w-50 justify-self-center" type="submit">Se connecter</button>
+			<button class="siteButton m-1 w-50 justify-self-center" type="submit" title="se connecter">Se connecter</button>
 		</form>
 	</div>
 

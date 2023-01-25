@@ -3,7 +3,7 @@
 {% block title %}New Category{% endblock %}
 
 {% block body %}
-    <a class="siteButton" href="{{ path('admin_app_category_index') }}" aria-label="retour">Retour à la liste des catégories</a>
+    <a class="siteButton" href="{{ path('admin_app_category_index') }}" title="retour">Retour à la liste des catégories</a>
     <h1>Créer une nouvelle catégorie</h1>
 {{ include('category/admincategory/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 {% endblock %}
