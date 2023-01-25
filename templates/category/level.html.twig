@@ -7,7 +7,7 @@
 {% block body %}
 
 	<div class="containerButtonCentered">
-		<a class="siteButton" href="{{ path('app_category_index') }}" aria-label="retour">
+		<a class="siteButton" href="{{ path('app_category_index') }}" title="retour">
 			Revenir à la page précédente
 		</a>
 	</div>
@@ -18,7 +18,7 @@
 		<div class="accordion" id="accordionExample">
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="heading{{level.id}}">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{level.id}}" aria-expanded="true" aria-controls="collapseOne">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{level.id}}" aria-expanded="true" aria-controls="collapseOne" title="niveau">
 						<h3>{{level.name}}</h3>
 					</button>
 				</h2>
@@ -41,7 +41,7 @@
 												})}}
 												</div>
 												<p class="card-text mt-2">{{tutoriel.description}}</p>
-												<a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="showButton mt-auto">Voir la fiche</a>
+												<a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="showButton mt-auto" title="voir">Voir la fiche</a>
 											</div>
 										</div>
 									</div>

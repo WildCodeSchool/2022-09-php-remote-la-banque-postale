@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<a class="siteButton" href="{{ path('admin_app_category_index') }}" aria-label="retour">Retour à la liste des catégories</a>
+	<a class="siteButton" href="{{ path('admin_app_category_index') }}" title="retour">Retour à la liste des catégories</a>
 	<div class="marginPage">
 		<h1>Éditer la categorie</h1>
 		{{ include('category/admincategory/_form.html.twig', {'button_label': 'Sauvegarder'}) }}

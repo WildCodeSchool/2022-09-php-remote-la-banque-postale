@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<a class="siteButton" href="{{ path('app_user_index') }}" aria-label="retour">Retour à la liste</a>
+	<a class="siteButton" href="{{ path('app_user_index') }}" title="retour">Retour à la liste</a>
 	<div class="marginPage">
 		<h1>Edition de l'utilisateur</h1>
 		{{ include('user/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
