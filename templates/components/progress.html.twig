@@ -1,0 +1,12 @@
+{% if this.userhasgame %}
+	{% set goodAnswers = 0 %}
+    {% set goodAnswer = this.useranswer %}
+	{% for goodAnswer in this.userhasgame %}
+		{
+		{% if goodAnswer == true %}
+			{% set goodAnswers = goodAnswers + 1 %}
+            <p>{{ goodAnswers }}</p>
+		{% endif %}
+		}
+	{% endfor %}
+{% endif %}
