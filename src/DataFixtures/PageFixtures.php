@@ -17,19 +17,20 @@ class PageFixtures extends Fixture
             'title' => 'Mentions contractuelles'
         ],
         [
-        'title' => 'Mentions légales'
+            'title' => 'Mentions légales'
         ],
         [
-        'title' => 'Données personnelles et cookies'
+            'title' => 'Données personnelles et cookies'
         ]
     ];
-   // public const CONTENT =['']
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-         {
+        foreach (self::PAGES as $pagesInfo) {
             $page = new Page();
             $page->setContent($faker->paragraphs(10, true));
+            $page->setTitle($pagesInfo['title']);
             $manager->persist($page);
         }
 
