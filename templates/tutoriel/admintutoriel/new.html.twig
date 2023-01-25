@@ -4,12 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Créer un nouveau tutoriel</h1>
+    <a href="{{ path('app_tutoriel_index') }}"> > Retour à la liste des tutoriels</a>
+
+    <h1>Créer un nouveau tutoriel</h1>
 
 	{{ component('tutoriel_form', {
 				tutoriel: tutoriel,
 			}) }}
 
-	<a href="{{ path('app_tutoriel_index') }}">
-		> Retour à la liste des tutoriels</a>
 {% endblock %}

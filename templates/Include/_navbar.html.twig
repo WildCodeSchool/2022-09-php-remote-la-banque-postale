@@ -3,8 +3,7 @@
 
 	<div class="container d-flex align-items-center p-2 w-90">
 
-		<a href="{{ app.user ? path('app_category_index') :  path('app_landing') }}" 
-		class="logonavbar fs-2">La Ligne Bleue</a>
+		<a href="{{ app.user ? path('app_category_index') : path('app_landing') }}" class="logonavbar fs-2">La Ligne Bleue</a>
 
 		<div class="d-inline-flex mt-2">
 
@@ -17,7 +16,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#" title="mes favoris">
+						<a class="nav-link" href="{{ path('app_favoris') }}" title="mes favoris">
 							<i class="fa-solid fa-star fa-2x"></i>
 						</a>
 					</li>
