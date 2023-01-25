@@ -75,13 +75,7 @@ class AdminTutorielController extends AbstractController
             $questionCollection->add($question);
         }
 
-        // $answersCollection = new ArrayCollection();
         $fetchQuestion = $tutoriel->getQuestions()[0];
-        // if ($question) {
-        //     foreach ($question->getAnswers() as $answer) {
-        //         $answersCollection->add($answer);
-        //     }
-        // }
         $answersCollection = $this->answerInArray($fetchQuestion);
 
         $form = $this->createForm(TutorielType::class, $tutoriel);
