@@ -1,0 +1,50 @@
+<div{{attributes}}>
+	{{ form_start(form) }}
+
+	{{form_row(form.title)}}
+	{{form_row(form.description)}}
+	{{form_row(form.content)}}
+	{{form_row(form.level)}}
+	{{form_row(form.category)}}
+
+	<fieldset>
+		<h3>Question</h3>
+		{% if form.questions is not empty %}
+			{% for questionKey, question in form.questions %}
+				<div class="input-group mb-3">
+					{{form_widget(question.content)}}
+					<button class="deleteButton" type="button" data-action="live#action" data-action-name="removeQuestion(index={{ questionKey }})">
+						supprimer la question
+					</button>
+				</div>
+				<h4>Réponses</h4>
+				<ul class="mb-0">
+					{% for answerKey, answer in question.answers %}
+						<li class="mb-2">
+							<div class="input-group mb-3">
+								{{ form_widget(answer.content) }}
+								<button class="deleteButton" type="button" data-action="live#action" data-action-name="removeAnswer(questionIndex={{ questionKey }}, answerIndex={{ answerKey}})">
+									supprimer cette réponse
+								</button>
+							</div>
+
+							{{ form_widget(answer.iscorrect) }}
+						</li>
+
+					{% endfor %}
+				</ul>
+				<button class="validationButton mb-2 mt-2" type="button" data-action="live#action" data-action-name="addAnswer(questionIndex={{ questionKey }})">
+					Ajouter une réponse</button>
+			{% endfor %}
+		{% endif %}
+		{% if form.questions is empty %}
+			<button class="validationButton" type="button" data-action="live#action" data-action-name="addQuestion()">
+				Ajouter une question</button>
+
+		{% endif %}
+	</fieldset>
+
+	{{ form_widget(form) }}
+	<button class="editButton">{{ button_label|default('Sauvegarder les ajouts') }}</button>
+	{{ form_end(form) }}
+</div>

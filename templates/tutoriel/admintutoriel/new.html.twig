@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Tutoriel{% endblock %}
+{% block title %}New Tutoriel
+{% endblock %}
 
 {% block body %}
     <a href="{{ path('app_tutoriel_index') }}" title="retour"> > Retour à la liste des tutoriels</a>
 
     <h1>Créer un nouveau tutoriel</h1>
 
-    {{ include('tutoriel/admintutoriel/_form.html.twig') }}
+	{{ component('tutoriel_form', {
+				tutoriel: tutoriel,
+			}) }}
 
 {% endblock %}

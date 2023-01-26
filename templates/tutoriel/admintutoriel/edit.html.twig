@@ -4,11 +4,15 @@
 {% endblock %}
 
 {% block body %}
-	<a class="siteButton" href="{{ path('app_tutoriel_index') }}" title="retour">Retour à la liste des tutoriels</a>
+	<a class="siteButton" href="{{ path('app_tutoriel_index') }}" title="retour" >Retour à la liste des tutoriels</a>
 	<div class="marginPage">
 		<h1>Éditer le tutoriel</h1>
-		<div class="blocEdit">
-			{{ include('tutoriel/admintutoriel/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+		<div
+			class="blocEdit">
+			{{ component('tutoriel_form', {
+				tutoriel: tutoriel,
+
+			}) }}
 			<div class="mt-3">
 				{{ include('tutoriel/admintutoriel/_delete_form.html.twig') }}
 			</div>

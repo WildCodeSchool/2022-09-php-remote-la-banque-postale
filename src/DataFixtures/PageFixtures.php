@@ -17,10 +17,10 @@ class PageFixtures extends Fixture
             'title' => 'Mentions contractuelles'
         ],
         [
-        'title' => 'Mentions légales'
+            'title' => 'Mentions légales'
         ],
         [
-        'title' => 'Données personnelles et cookies'
+            'title' => 'Données personnelles et cookies'
         ]
     ];
 
