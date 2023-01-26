@@ -1,4 +1,5 @@
-{{ form_start(tutorielForm) }}
-    {{ form_widget(tutorielForm) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(tutorielForm) }}
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="editButton" title="sauvegarder">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+

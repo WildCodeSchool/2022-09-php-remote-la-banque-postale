@@ -4,6 +4,11 @@
 {% endblock %}
 
 {% block body %}
+	<div class="containerButtonCentered">
+		<a class="siteButton" href="{{ path('app_category_index') }}" title="retour">
+			Revenir à la page précédente
+		</a>
+	</div>
 
 	<h1>Recherchez votre tutoriel</h1>
 
@@ -12,7 +17,7 @@
 
 		<div class="input-group mb-3">
 			{{ form_widget(form.search) }}
-			<button class="btn btn-warning">Rechercher</button>
+			<button class="btn btn-warning" title="rechercher">Rechercher</button>
 		</div>
 		{{ form_end(form) }}
 	</div>
@@ -22,15 +27,20 @@
 
 			{% for tutoriel in tutoriels %}
 
-
-				<div class="d-lg-inline-flex d-md-inline-flex d-flex justify-content-center align-item-center p-2">
-					<div class="card" style="width: 18rem;">
-						<div class="card-body">
-							<h5 class="card-title">{{tutoriel.title}}</h5>
-							<h6 class="card-subtitle mb-2 text-muted">{{tutoriel.id}}</h6>
+				<div class="col-lg-3 col-md-4 p-2">
+					<div class="card h-100">
+						<div class="card-body d-flex flex-column">
+							<div class="text-center">
+								{{ component('favori', {
+													tutoriel: tutoriel
+												})}}
+								<h5 class="mt-3">{{tutoriel.title}}</h5>
+								{{component('badge', {
+													tutoriel: tutoriel
+												})}}
+							</div>
 							<p class="card-text">{{tutoriel.description}}</p>
-							<a href="{{ path('level_tutoriel_show', {"category_slug": categories.0.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="card-link">Voir la fiche
-								{{tutoriel.title}}</a>
+							<a class="showButton mt-auto" href="{{ path('level_tutoriel_show', {"category_slug": categories.0.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="card-link" title="voir">Voir la fiche</a>
 						</div>
 					</div>
 				</div>

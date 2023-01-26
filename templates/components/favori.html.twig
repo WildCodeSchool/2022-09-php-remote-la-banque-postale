@@ -1,0 +1,15 @@
+<div{{attributes}}>
+	{% if app.user %}
+	<a
+            data-action="live#action"
+            data-action-name="prevent|toggleFav"
+            class="favoris"
+            title="favoris"
+            href="{{ path('tutoriel_favoris', {id: this.tutoriel.id}) }}"
+            data-no-swup=""
+
+            >
+			<img src="{{ this.isFavori ? asset('build/images/star_full.png') : asset('build/images/star_empty.png') }}">
+		</a>
+	{% endif %}
+</div>

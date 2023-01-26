@@ -19,10 +19,10 @@ class TutorielFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-        for ($j = 1; $j < CategoryFixtures::$categoryIndex; $j++) {
+        for ($j = 0; $j < CategoryFixtures::$categoryIndex; $j++) {
             for ($i = 0; $i < 13; $i++) {
                 $tutoriel = new Tutoriel();
-                $tutoriel->setTitle('Fiche ' . $faker->title());
+                $tutoriel->setTitle('Fiche ' . $faker->title() . ' ' . $j . $i);
                 $tutoriel->setDescription($faker->paragraphs(1, true));
                 $tutoriel->setContent($faker->paragraphs(5, true));
                 $tutoriel->setSlug($this->slugger->slug($tutoriel->getTitle()));

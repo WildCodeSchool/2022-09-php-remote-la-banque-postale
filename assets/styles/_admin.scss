@@ -1,0 +1,29 @@
+.adminPanelTable {
+    padding: 0.5rem;
+    border-width: 0;
+    table-layout: auto;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2rem;
+    border-collapse: separate;
+    border-spacing: 30px;
+}
+
+//edit tuto page
+
+.blocEdit {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+@media screen and (max-width: 990px) {
+    .adminPanelTable {
+        font-size: 80%;
+    }
+
+    .blocEdit {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

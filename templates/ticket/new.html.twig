@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Ticket{% endblock %}
+{% block title %}New Ticket
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Ticket</h1>
-
-    {{ include('ticket/_form.html.twig') }}
-
+	<a class="siteButton" href="{{ path('admin_app_ticket_index') }}" title="retour">Retour à la liste des tickets</a>
+	<div class="marginPage">
+		<h1>Créer un nouveau ticket</h1>
+		{{ include('ticket/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+	</div>
 {% endblock %}

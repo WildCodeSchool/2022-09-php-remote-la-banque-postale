@@ -1,0 +1,29 @@
+// page level
+.accordion-item {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.accordion-button {
+    background-color: var(--color-blue);
+    color: var(--color-yellow);
+}
+
+.accordion-button::before {
+    background-color: var(--color-blue);
+    color: var(--color-yellow);
+}
+
+.card {
+    background-color: var(--color-yellow);
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+// page tutoriel
+.textTuto {
+    margin-top: 2rem;
+}
+
+.svgCheckOrNot {
+    width: 64px;
+}
