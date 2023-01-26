@@ -17,7 +17,7 @@
 
 		<div class="input-group mb-3">
 			{{ form_widget(form.search) }}
-			<button class="btn btn-warning">Rechercher</button>
+			<button class="btn btn-warning" title="rechercher">Rechercher</button>
 		</div>
 		{{ form_end(form) }}
 	</div>
@@ -40,7 +40,7 @@
 												})}}
 							</div>
 							<p class="card-text">{{tutoriel.description}}</p>
-							<a class="showButton mt-auto" href="{{ path('level_tutoriel_show', {"category_slug": categories.0.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="card-link">Voir la fiche</a>
+							<a class="showButton mt-auto" href="{{ path('level_tutoriel_show', {"category_slug": categories.0.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="card-link" title="voir">Voir la fiche</a>
 						</div>
 					</div>
 				</div>
