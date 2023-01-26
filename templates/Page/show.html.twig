@@ -1,11 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}
+	{{ page.title }}
+{% endblock %}
+
 
 {% block body %}
 
+	<h1 class="h1Page">
+		{{ page.title }}
+	</h1>
 
- {{ page.title }}
- {{ page.content }}
+	<p class="pPage">
+		{{ page.content }}
+	</p>
 
 {% endblock %}
