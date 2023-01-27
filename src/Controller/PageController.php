@@ -11,8 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/page', name: 'page_')]
 class PageController extends AbstractController
 {
-    #[Route('/{id}', name: 'show')]
-    public function show(Page $page): Response
+    #[Route('/{slug}/', name: 'show')]
+    public function show(string $slug, Page $page): Response
     {
         return $this->render('page/show.html.twig', [
             'page' => $page,
