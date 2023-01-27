@@ -21,11 +21,6 @@ class ValidatedComponent
     ) {
     }
 
-    public function userHasGame(): null|Game
-    {
-        return $this->gameRepository->findOneBy(['tutoriel' => $this->tutoriel, 'user' => $this->security->getUser()]);
-    }
-
     public function getUserAnswer(): ?bool
     {
         $userGame = $this->userHasGame();
@@ -36,5 +31,10 @@ class ValidatedComponent
             return $gameAnswer->getAnswer()->isIscorrect();
         }
         return null;
+    }
+
+    public function userHasGame(): null|Game
+    {
+        return $this->gameRepository->findOneBy(['tutoriel' => $this->tutoriel, 'user' => $this->security->getUser()]);
     }
 }
