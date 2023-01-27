@@ -6,9 +6,14 @@ use App\Entity\Page;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Faker\Factory;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PageFixtures extends Fixture
 {
+    public function __construct(private SluggerInterface $slugger)
+    {
+    }
+
     public const PAGES = [
         [
             'title' => 'Plan du site'
@@ -31,6 +36,7 @@ class PageFixtures extends Fixture
             $page = new Page();
             $page->setContent($faker->paragraphs(10, true));
             $page->setTitle($pagesInfo['title']);
+            $page->setSlug($this->slugger->slug($page->getTitle()));
             $manager->persist($page);
         }
 
