@@ -2,39 +2,60 @@
 
 namespace App\Twig\Components;
 
-use App\Entity\Game;
-use App\Entity\Tutoriel;
-use App\Repository\GameRepository;
+use App\Entity\Category;
+use App\Entity\Level;
 use App\Repository\GameAnswerRepository;
+use App\Repository\TutorielRepository;
 use Symfony\Component\Security\Core\Security;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
+use App\Entity\User;
 
 #[AsTwigComponent('progress')]
 class ProgressComponent
 {
-    public Tutoriel $tutoriel;
+    public Level $level;
+    public Category $category;
 
     public function __construct(
-        private GameAnswerRepository $gameAnswerRepository,
-        private GameRepository $gameRepository,
-        private Security $security
+        private TutorielRepository $tutorielRepository,
+        private Security $security,
+        private GameAnswerRepository $gameAnswerRepository
     ) {
     }
 
-    public function userHasGame(): null|Game
+
+    public function getGoodQuizz(): null|int
     {
-        return $this->gameRepository->findOneBy(['tutoriel' => $this->tutoriel, 'user' => $this->security->getUser()]);
+        /** @var User $user */
+        $user = $this->security->getUser();
+        $result = 0;
+        $tutoriels = $this->getTutoriels();
+        foreach ($tutoriels as $tutoriel) {
+            $questions = $tutoriel->getQuestions();
+            foreach ($questions as $question) {
+                $correctAnswers =
+                    $this->gameAnswerRepository->findCorrectAnswersByUser($user, $question);
+                if ($correctAnswers) {
+                    $result += count($correctAnswers);
+                }
+            }
+        }
+
+        return $result;
     }
 
-    public function getUserAnswer(): ?bool
+    public function getTotalQuizz(): null|int
     {
-        $userGame = $this->userHasGame();
-        if ($userGame) {
-            $questions = $this->tutoriel->getQuestions();
-            $question = $questions ? $questions[0] : null;
-            $gameAnswer = $this->gameAnswerRepository->findOneBy(['game' => $userGame, 'question' => $question]);
-            return $gameAnswer->getAnswer()->isIscorrect();
+        $tutoriels = $this->getTutoriels();
+        $totalQuizz = 0;
+        foreach ($tutoriels as $tutoriel) {
+            $totalQuizz += count($tutoriel->getQuestions());
         }
-        return null;
+        return $totalQuizz;
+    }
+
+    private function getTutoriels(): array
+    {
+        return $this->tutorielRepository->findBy(array('level' => $this->level, 'category' => $this->category));
     }
 }
