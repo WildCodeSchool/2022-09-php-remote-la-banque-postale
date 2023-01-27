@@ -20,7 +20,7 @@ class Answer
     private ?string $content = null;
 
     #[ORM\Column]
-    private ?bool $iscorrect = null;
+    private ?bool $isCorrect = null;
 
 
     #[ORM\OneToMany(mappedBy: 'answer', targetEntity: GameAnswer::class)]
@@ -53,12 +53,12 @@ class Answer
 
     public function isIscorrect(): ?bool
     {
-        return $this->iscorrect;
+        return $this->isCorrect;
     }
 
-    public function setIscorrect(bool $iscorrect): self
+    public function setIscorrect(bool $isCorrect): self
     {
-        $this->iscorrect = $iscorrect;
+        $this->isCorrect = $isCorrect;
 
         return $this;
     }

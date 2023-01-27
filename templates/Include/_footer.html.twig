@@ -10,10 +10,10 @@
 
 		<div class="mx-auto">
 			<div class="divAFooter d-flex align-content-center align-items-center mx-auto flex-wrap">
-				<a class="aFooter" title="Plan du site" href="{{ path('page_show', { "id" : 1 })}}">Plan du site</a>
-				<a class="aFooter" title="mentions contractuelles" href="{{ path('page_show', { "id" : 2 })}}">Mentions contractuelles</a>
-				<a class="aFooter" title="mentions légales" href="{{ path('page_show', { "id" : 3 })}}">Mentions légales</a>
-				<a class="aFooter" title= "données personnelles et cookies" href="{{ path('page_show', { "id" : 4 })}}">Données personnelles et cookies</a> 
+				<a class="aFooter" title="Plan du site" href="{{ path('page_show', { "slug" : 'Plan-du-site' })}}">Plan du site</a>
+				<a class="aFooter" title="mentions contractuelles" href="{{ path('page_show', { "slug" : 'Mentions-contractuelles' })}}">Mentions contractuelles</a>
+				<a class="aFooter" title="mentions légales" href="{{ path('page_show', { "slug" : 'Mentions-legales' })}}">Mentions légales</a>
+				<a class="aFooter" title= "données personnelles et cookies" href="{{ path('page_show', { "slug" : 'Donnees-personnelles-et-cookies' })}}">Données personnelles et cookies</a> 
 				{% if app.user %}
 					<a class="bugSignal" title="signaler un bug" href="{{ path('app_ticket_new') }}">Signaler un bug</a>
 					
