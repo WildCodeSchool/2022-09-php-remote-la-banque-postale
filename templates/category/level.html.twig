@@ -20,16 +20,16 @@
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="heading{{level.id}}">
 
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{level.id}}" aria-expanded="true" aria-controls="collapseOne" title="niveau">
-						<h3>{{level.name}}</h3>
-					</button>
-
-					<div class="progress-container">
-						{{ component('progress', {
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{level.id}}" aria-expanded="true" aria-controls="collapseOne" title="niveau">
+							<h3>{{level.name}}</h3>
+													<div class="progress-container">
+							{{ component('progress', {
 							level: level,
 							category: category,
 						})}}
 					</div>
+						</button>
+
 
 
 				</h2>

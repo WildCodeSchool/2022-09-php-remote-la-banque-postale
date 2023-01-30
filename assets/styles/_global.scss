@@ -112,6 +112,12 @@ h3 {
     font-size: 1rem;
 }
 
+.progress-container{
+    margin-left: 10%;
+    width: 20%;
+    position: absolute;
+}
+
 .progress-bar{
     font-size: 0.75rem;
     font-family: 'Questrial', sans-serif;
@@ -247,6 +253,16 @@ td {
     .marginPage {
         margin-left: 10px;
         margin-right: 10px;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+
+    .progress-container{
+        margin-left: 10%;
+        width: 80%;
+        position: relative;
     }
 
 }
