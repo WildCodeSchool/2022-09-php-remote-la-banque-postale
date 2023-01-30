@@ -36,13 +36,13 @@
 		<ul class="d-inline-flex mb-2">
 			{% if app.user %}
 				<li class="list-unstyled"></li>
-				<a class="connexion" title="se déconnecter" aria-current="page" href="{{ path('app_logout') }}">
+				<a class="connexion" title="se déconnecter" aria-current="page" href="{{ path('app_logout') }}" data-no-swup="">
 					<strong>Se déconnecter</strong>
 				</a>
 			</li>
 		{% else %}
 			<li class="list-unstyled"></li>
-			<a class="connexion" title="se connecter" aria-current="page" href="{{ path('app_login') }}">
+			<a class="connexion" title="se connecter" aria-current="page" href="{{ path('app_login') }}" data-no-swup="">
 				<strong>Se connecter</strong>
 			</a>
 

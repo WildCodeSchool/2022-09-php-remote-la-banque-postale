@@ -6,10 +6,6 @@
 
 {% block body %}
 
-	<pre>
-	{{ dump(category) }}
-</pre>
-
 	<div class="containerButtonCentered">
 		<a class="siteButton" href="{{ path('app_category_index') }}" title="retour">
 			Revenir à la page précédente
@@ -23,13 +19,19 @@
 		<div class="accordion" id="accordionExample">
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="heading{{level.id}}">
+
 					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{level.id}}" aria-expanded="true" aria-controls="collapseOne" title="niveau">
 						<h3>{{level.name}}</h3>
+					</button>
+
+					<div class="progress-container">
 						{{ component('progress', {
 							level: level,
 							category: category,
 						})}}
-					</button>
+					</div>
+
+
 				</h2>
 				<div id="collapse{{level.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
@@ -41,15 +43,19 @@
 										<div class="card h-100">
 											<div class="card-body d-flex flex-column">
 												<div class="text-center">
-													{{ component('favori', {
+													{% if app.user %}
+														{{ component('favori', {
 													tutoriel: tutoriel
 												})}}
+													{% endif %}
 													<h5 class="mt-3">{{tutoriel.title}}</h5>
-													{{component('badge', {
+													{% if app.user %}
+														{{component('badge', {
 													tutoriel: tutoriel
 												})}}
+													{% endif %}
 												</div>
-												<p class="card-text mt-2">{{tutoriel.description}}</p>
+												<p class="card-text mt-2">{{tutoriel.description | raw}}</p>
 												<a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="showButton mt-auto" title="voir">Voir la fiche</a>
 
 											</div>
