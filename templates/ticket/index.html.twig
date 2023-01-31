@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block body %}
+<pre>
+	{{ dump(tickets) }}
+</pre>
 	<a class="siteButton" href="{{ path('app_admin') }}" title="retour">Retour au panneau général</a>
 	<h1>Gestionnaire de ticket</h1>
 	<div class="containerButtonCentered">
@@ -25,7 +28,7 @@
 			{% for ticket in tickets %}
 				<tr>
 					<td>{{ ticket.id }}</td>
-					<td>{{ ticket.user.id }}</td>
+					{# <td>{{ ticket.user.id }}</td> #}
 					<td>{{ ticket.title }}</td>
 					<td>{{ ticket.content|raw }}</td>
 					<td>{{ ticket.submitedAt ? ticket.submitedAt|date('Y-m-d H:i:s') : '' }}</td>

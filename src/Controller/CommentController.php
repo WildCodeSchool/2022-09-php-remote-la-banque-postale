@@ -16,6 +16,9 @@ class CommentController extends AbstractController
     #[Route('/{id}/edit', name: 'app_comment_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Comment $comment, CommentRepository $commentRepository): Response
     {
+        if ($this->getUser() !== $comment->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Vous n\'êtes pas l\'auteur de ce commentaire !');
+        }
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
