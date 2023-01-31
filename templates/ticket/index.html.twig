@@ -28,7 +28,7 @@
 			{% for ticket in tickets %}
 				<tr>
 					<td>{{ ticket.id }}</td>
-					{# <td>{{ ticket.user.id }}</td> #}
+					<td>{{ ticket.user.id }}</td>
 					<td>{{ ticket.title }}</td>
 					<td>{{ ticket.content|raw }}</td>
 					<td>{{ ticket.submitedAt ? ticket.submitedAt|date('Y-m-d H:i:s') : '' }}</td>
