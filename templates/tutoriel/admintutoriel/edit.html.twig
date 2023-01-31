@@ -7,8 +7,7 @@
 	<a class="siteButton" href="{{ path('app_tutoriel_index') }}" title="retour" >Retour à la liste des tutoriels</a>
 	<div class="marginPage">
 		<h1>Éditer le tutoriel</h1>
-		<div
-			class="blocEdit">
+		<div class="blocEdit" {{ stimulus_controller('tutoriel_form') }}>
 			{{ component('tutoriel_form', {
 				tutoriel: tutoriel,
 

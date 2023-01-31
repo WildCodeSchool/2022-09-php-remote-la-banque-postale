@@ -7,7 +7,9 @@
 	<a class="siteButton" href="{{ path('app_admin') }}" title="retour">Retour au panneau général</a>
 	<h1>Gestionnaire de ticket</h1>
 	<div class="containerButtonCentered">
-		<a class="validationButton" href="{{ path('app_ticket_new') }}" title="créer">Créer un nouveau ticket</a>
+		<a class="validationButton" href="{{ path('app_ticket_new') }}"
+           data-no-swup=""
+           title="créer">Créer un nouveau ticket</a>
 	</div>
 
 	<table class="table">
@@ -35,7 +37,10 @@
 								<a class="showButton" href="{{ path('app_ticket_show', {'id': ticket.id}) }}" title="voir">Voir</a>
 							</div>
 							<div class="d-flex align-self-center p-2">
-								<a class="editButton" href="{{ path('admin_app_ticket_edit', {'id': ticket.id}) }}" title="Editer">Éditer</a>
+								<a class="editButton"
+                                   href="{{ path('admin_app_ticket_edit', {'id': ticket.id}) }}"
+                                   data-no-swup=""
+                                   title="Editer">Éditer</a>
 							</div>
 							<div class="d-flex align-self-center p-2">
 								{{ include('ticket/_delete_form.html.twig') }}

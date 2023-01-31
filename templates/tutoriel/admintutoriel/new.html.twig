@@ -7,9 +7,11 @@
     <a href="{{ path('app_tutoriel_index') }}" title="retour"> > Retour à la liste des tutoriels</a>
 
     <h1>Créer un nouveau tutoriel</h1>
+    <div {{ stimulus_controller('tutoriel_form') }}>
 
-	{{ component('tutoriel_form', {
-				tutoriel: tutoriel,
-			}) }}
+        {{ component('tutoriel_form', {
+            tutoriel: tutoriel,
+        }) }}
+    </div>
 
 {% endblock %}
