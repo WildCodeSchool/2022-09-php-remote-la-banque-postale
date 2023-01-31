@@ -4,8 +4,11 @@
 {% endblock %}
 
 {% block body %}
+{% if is_granted("ROLE_ADMIN") %}
 	<a class="siteButton" href="{{ path('admin_app_ticket_index') }}" title="retour">Retour à la liste des tickets</a>
 	<div class="marginPage">
+{% endif %}
+
 		<h1>Créer un nouveau ticket</h1>
 		{{ include('ticket/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 	</div>
