@@ -15,7 +15,7 @@
 }
 
 .card {
-    background-color: var(--color-yellow);
+    background-color: #ffc9057c;
     box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
@@ -27,3 +27,22 @@
 .svgCheckOrNot {
     width: 64px;
 }
+.marginTuto {
+    margin-left: 13rem;
+    margin-right: 13rem;
+    text-align: justify;
+}
+
+@media screen and (max-width: 1200px) {
+    .marginTuto {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+        .marginTuto {
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+    }

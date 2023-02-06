@@ -229,12 +229,13 @@ td {
 }
 
 .marginPage {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 2rem;
+    margin-right: 2rem;
     text-align: justify;
 }
 
-@media screen and (max-width: 990px) {
+
+@media screen and (max-width: 690px) {
     th {
         font-size: 0.8rem;
         padding-left: 10px;
@@ -251,10 +252,9 @@ td {
     }
 
     .marginPage {
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
-
 }
 
 @media screen and (max-width:600px) {
