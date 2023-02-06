@@ -9,7 +9,11 @@
 
 	<h1>Administration des tutoriels</h1>
 	<div class="containerButtonCentered">
-		<a class="validationButton" href="{{ path('app_tutoriel_new') }}" title="créer un nouveau tutoriel">Créer un nouveau tutoriel</a>
+		<a class="validationButton"
+           href="{{ path('app_tutoriel_new') }}"
+           data-no-swup=""
+           title="créer un nouveau tutoriel">
+            Créer un nouveau tutoriel</a>
 	</div>
 	{% for level in levels %}
 
@@ -42,7 +46,11 @@
 										<a class="showButton" href="{{ path('app_tutoriel_show', {'id': tutoriel.id}) }}" title="voir">Voir</a>
 									</div>
 									<div class="d-flex align-self-center p-2">
-										<a class="editButton" href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}" title="editer">Éditer</a>
+										<a class="editButton"
+                                           href="{{ path('app_tutoriel_edit', {'id': tutoriel.id}) }}"
+                                           data-no-swup=""
+                                           title="editer">
+                                            Éditer</a>
 									</div>
 									<div class="d-flex align-self-center p-2">
 										{{ include('tutoriel/admintutoriel/_delete_form.html.twig') }}

@@ -17,8 +17,14 @@ class TutorielType extends AbstractType
 
         $builder
             ->add('title')
-            ->add('description', CKEditorType::class)
-            ->add('content', CKEditorType::class)
+            ->add('description', CKEditorType::class, [
+                'attr' => ['data-main-target' => 'ckeditor'],
+                'config_name' => 'light'
+            ])
+            ->add('content', CKEditorType::class, [
+                'attr' => ['data-main-target' => 'ckeditor'],
+                'config_name' => 'full'
+            ])
             ->add('level', null, ['choice_label' => 'name'])
             ->add(
                 'category',

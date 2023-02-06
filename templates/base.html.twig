@@ -19,19 +19,24 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body {{ stimulus_controller('symfony/ux-swup/swup') }}>
+	<body {{ stimulus_controller({
+        'symfony/ux-swup/swup': {
+            containers: ['#swup', '#alerts']
+        }
+    }) }}>
 		<header>
 			{% include 'Include/_navbar.html.twig' %}
 		</header>
-		{% for category, messages in app.flashes %}
-			{% for message in messages %}
-				<div class="alert alert-{{ category }}">
-					{{ message }}
-				</div>
-			{% endfor %}
-		{% endfor %}
-		<main id="swup"> {% block body %}{% endblock %}
-			</main>
+		<div class="alerts" id="alerts">
+            {% for category, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+		    <main id="swup"> {% block body %}{% endblock %}</main>
 			{% include 'Include/_footer.html.twig' %}
 		</body>
 	</html>

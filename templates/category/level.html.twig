@@ -6,67 +6,66 @@
 
 {% block body %}
 
-	<div class="containerButtonCentered">
-		<a class="siteButton" href="{{ path('app_category_index') }}" title="retour">
-			Revenir à la page précédente
-		</a>
-	</div>
+    <div class="containerButtonCentered">
+        <a class="siteButton" href="{{ path('app_category_index') }}" title="retour">
+            Revenir à la page précédente
+        </a>
+    </div>
 
-	<h1 class="mb-5">{{category.label}}</h1>
+    <h1 class="mb-5">{{ category.label }}</h1>
 
+    {% for level in levels %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{ level.id }}">
 
-	{% for level in levels %}
-		<div class="accordion" id="accordionExample">
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="heading{{level.id}}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse{{ level.id }}" aria-expanded="true" aria-controls="collapseOne"
+                            title="niveau">
+                            <h3 class="mb-0">{{ level.name }}</h3>
 
-						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{level.id}}" aria-expanded="true" aria-controls="collapseOne" title="niveau">
-							<h3>{{level.name}}</h3>
-													
-							{{ component('progress', {
-							level: level,
-							category: category,
-						})}}
+                            {{ component('progress', {
+                                level: level,
+                                category: category,
+                            }) }}
+                    </button>
+                </h2>
+                <div id="collapse{{ level.id }}" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                     data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row">
 
-						</button>
+                            {% for tutoriel in tutoriels %}
+                                {% if level.name == tutoriel.level.name %}
+                                    <div class="col-lg-3 col-md-4 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-body d-flex flex-column">
+                                                <div class="text-center">
+                                                    {% if app.user %}
+                                                        {{ component('favori', {
+                                                            tutoriel: tutoriel
+                                                        }) }}
+                                                    {% endif %}
+                                                    <h5 class="mt-3">{{ tutoriel.title }}</h5>
+                                                    {% if app.user %}
+                                                        {{ component('badge', {
+                                                            tutoriel: tutoriel
+                                                        }) }}
+                                                    {% endif %}
+                                                </div>
+                                                <p class="card-text mt-2">{{ tutoriel.description | raw }}</p>
+                                                <a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}"
+                                                   class="showButton mt-auto" title="voir" data-no-swup="">Voir la fiche</a>
 
-
-
-				</h2>
-				<div id="collapse{{level.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-					<div class="accordion-body">
-						<div class="row">
-
-							{% for tutoriel in tutoriels %}
-								{% if level.name == tutoriel.level.name %}
-									<div class="col-lg-3 col-md-4 mb-3">
-										<div class="card h-100">
-											<div class="card-body d-flex flex-column">
-												<div class="text-center">
-													{% if app.user %}
-														{{ component('favori', {
-													tutoriel: tutoriel
-												})}}
-													{% endif %}
-													<h5 class="mt-3">{{tutoriel.title}}</h5>
-													{% if app.user %}
-														{{component('badge', {
-													tutoriel: tutoriel
-												})}}
-													{% endif %}
-												</div>
-												<p class="card-text mt-2">{{tutoriel.description | raw}}</p>
-												<a href="{{ path('level_tutoriel_show', {"category_slug": category.slug, "tutoriel_slug" : tutoriel.slug }) }}" class="showButton mt-auto" title="voir">Voir la fiche</a>
-
-											</div>
-										</div>
-									</div>
-								{% endif %}
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	{% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
