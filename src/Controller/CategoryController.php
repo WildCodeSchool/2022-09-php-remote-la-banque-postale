@@ -35,6 +35,9 @@ class CategoryController extends AbstractController
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette route !');
+        }
         return $this->render('category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
         ]);
@@ -46,6 +49,9 @@ class CategoryController extends AbstractController
         CategoryRepository $categoryRepository,
         Request $request
     ): Response {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette route !');
+        }
         $form = $this->createForm(SearchTutorielsType::class, null, [
             'method' => 'GET'
         ]);
@@ -67,6 +73,9 @@ class CategoryController extends AbstractController
     #[Route('/tutoriel', name: 'app_category_tutoriel', methods: ['GET'])]
     public function indexTutoriel(TutorielRepository $tutorielRepository): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette route !');
+        }
         return $this->render('category/indexTutoriels.html.twig', [
             'tutoriels' => $tutorielRepository->findAll(),
         ]);
@@ -79,7 +88,9 @@ class CategoryController extends AbstractController
         TutorielRepository $tutorielRepository,
         LevelRepository $levelRepository,
     ): Response {
-
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette route !');
+        }
         if (!$category instanceof Category) {
             throw $this->createNotFoundException(
                 'Pas de catégorie nommée : ' . $slug . ' '
@@ -107,7 +118,9 @@ class CategoryController extends AbstractController
         GameRepository $gameRepository,
         GameAnswerRepository $gameAnswerRepository,
     ): Response {
-
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette route !');
+        }
         //Gestion du quizz
         $answerId = $request->get('answer');
         if ($answerId) {

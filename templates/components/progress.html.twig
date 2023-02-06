@@ -1,3 +1,14 @@
-
-{{ this.goodQuizz }} / {{ this.totalQuizz }}
-
+{% if this.goodQuizz %}
+<div class="progress-container me-2">
+	<div class="progress mb-1">
+		<div class="progress-bar progress-bar-striped bg-success" 
+		role="progressbar" 
+		style="width: {{ (this.goodQuizz) / (this.totalQuizz) *100 }}%" 
+		aria-valuenow="{{ (this.goodQuizz) / (this.totalQuizz) *100 }}%" 
+		aria-valuemin="0" 
+		aria-valuemax="100">
+		</div>
+	</div>
+	<small>{{ this.goodQuizz }} sur {{ this.totalQuizz }}</small>
+</div>
+{% endif %}
