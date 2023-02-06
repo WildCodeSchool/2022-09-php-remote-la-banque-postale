@@ -88,6 +88,7 @@ class AdminCategoryController extends AbstractController
             $categoryRepository->remove($category, true);
         }
 
+
         return $this->redirectToRoute('admin_app_category_index', [], Response::HTTP_SEE_OTHER);
     }
 }
