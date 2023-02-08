@@ -112,6 +112,17 @@ h3 {
     font-size: 1rem;
 }
 
+.progress-container{
+    margin-left: 10%;
+    width: 20%;
+    position: absolute;
+}
+
+.progress-bar{
+    font-size: 0.75rem;
+    font-family: 'Questrial', sans-serif;
+}
+
 .pLanding {
     color: var(--color-blue);
     font-size: 1.5em;
@@ -218,12 +229,17 @@ td {
 }
 
 .marginPage {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 2rem;
+    margin-right: 2rem;
     text-align: justify;
 }
 
-@media screen and (max-width: 990px) {
+.separated {
+    border-top: 1px solid #a3a3a3;
+    margin-top: 1rem;
+}
+
+@media screen and (max-width: 690px) {
     th {
         font-size: 0.8rem;
         padding-left: 10px;
@@ -240,8 +256,17 @@ td {
     }
 
     .marginPage {
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+@media screen and (max-width:600px) {
+
+    .progress-container{
+        margin-left: 10%;
+        width: 80%;
+        position: relative;
     }
 
 }

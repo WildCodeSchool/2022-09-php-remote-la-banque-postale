@@ -4,7 +4,12 @@
 {% endblock %}
 
 {% block body %}
+
+{% if is_granted("ROLE_ADMIN") %}
 	<a class="siteButton" href="{{ path('app_comment_index') }}" title="retour">Retour à la liste des commentaires</a>
+{% endif %}
+
+
 	<div class="marginPage">
 		<h1>Éditer le commentaire</h1>
 		<div class="blocEdit">

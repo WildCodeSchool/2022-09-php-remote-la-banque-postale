@@ -36,8 +36,8 @@
 				<label class="w-25" for="password">Password:</label>
 				<input class="col" type="password" id="password" name="_password">
 			</div>
-
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="hidden" name="_target_path" value="{{ path('app_category_index') }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 			<button class="siteButton m-1 w-50 justify-self-center" type="submit" title="se connecter">Se connecter</button>
 		</form>

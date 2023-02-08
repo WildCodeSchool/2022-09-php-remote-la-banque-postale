@@ -19,7 +19,7 @@ class TutorielForm extends AbstractController
     use DefaultActionTrait;
     use LiveCollectionTrait;
 
-    #[LiveProp(fieldName: 'tutorielField', dehydrateWith: 'dehydrateWith')]
+    #[LiveProp(dehydrateWith: 'dehydrateWith', fieldName: 'tutorielField')]
     public ?Tutoriel $tutoriel = null;
 
     protected function instantiateForm(): FormInterface
