@@ -14,8 +14,14 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content', CKEditorType::class)
-        ;
+            ->add(
+                'content',
+                CKEditorType::class,
+                [
+                    'attr' => ['data-main-target' => 'ckeditor'],
+                    'config_name' => 'light'
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

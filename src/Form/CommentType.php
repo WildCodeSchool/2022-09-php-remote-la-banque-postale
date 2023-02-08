@@ -13,7 +13,14 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('text', CKEditorType::class);
+            ->add(
+                'text',
+                CKEditorType::class,
+                [
+                    'attr' => ['data-main-target' => 'ckeditor'],
+                    'config_name' => 'light'
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
