@@ -110,7 +110,7 @@ class AdminTutorielController extends AbstractController
         ]);
     }
 
-    private function answerInArray(Question $fetchQuestion): ArrayCollection
+    private function answerInArray(?Question $fetchQuestion): ?ArrayCollection
     {
         $answersCollection = new ArrayCollection();
         if ($fetchQuestion instanceof Question) {
@@ -119,6 +119,7 @@ class AdminTutorielController extends AbstractController
             }
             return $answersCollection;
         }
+        return null;
     }
 
     #[Route('/{id}', name: 'app_tutoriel_delete', methods: ['POST'])]

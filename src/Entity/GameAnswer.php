@@ -15,7 +15,7 @@ class GameAnswer
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
     private ?Game $game = null;
 
     #[ORM\ManyToOne(inversedBy: 'gameAnswers')]

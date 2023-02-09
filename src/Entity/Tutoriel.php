@@ -30,10 +30,10 @@ class Tutoriel
     #[ORM\ManyToOne(inversedBy: 'tutoriels')]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Comment::class)]
+    #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Comment::class, cascade: ['persist', 'remove'])]
     private Collection $comments;
 
-    #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Question::class, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'tutoriel', targetEntity: Question::class, cascade: ['persist', 'remove'])]
     private ?Collection $questions;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
