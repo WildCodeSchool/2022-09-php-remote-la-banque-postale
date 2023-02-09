@@ -25,7 +25,7 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, cascade: ['persist', 'remove'])]
     private Collection $answers;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: GameAnswer::class)]
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: GameAnswer::class, cascade: ['persist', 'remove'])]
     private Collection $gameAnswers;
 
     public function __construct()

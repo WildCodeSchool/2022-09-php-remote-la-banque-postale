@@ -39,7 +39,8 @@
 
 		<p class="textTuto">{{ tutoriel.content | raw }}</p>
 
-		<div class="separated">
+        {% if tutoriel.questions|length %}
+		    <div class="separated">
 			<h2 class="mt-3">Question</h2>
 
 			<form>
@@ -73,6 +74,7 @@
 			{% endif %}
 
 		</div>
+        {% endif %}
 		<div class="separated">
 
 			{% if app.user %}

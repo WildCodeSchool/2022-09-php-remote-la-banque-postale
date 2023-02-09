@@ -113,7 +113,6 @@ class CategoryController extends AbstractController
         Category $category,
         Tutoriel $tutoriel,
         CommentRepository $commentRepository,
-        Question $question,
         AnswerRepository $answerRepository,
         GameRepository $gameRepository,
         GameAnswerRepository $gameAnswerRepository,
@@ -121,6 +120,7 @@ class CategoryController extends AbstractController
         if (!$this->getUser()) {
             throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette route !');
         }
+        $question = $tutoriel->getQuestions()[0];
         //Gestion du quizz
         $answerId = $request->get('answer');
         if ($answerId) {
