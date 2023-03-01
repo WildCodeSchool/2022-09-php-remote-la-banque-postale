@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   web:
@@ -25,7 +25,7 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.${PROJECT_NAME:-project}-secure.entrypoints=websecure"
       - "traefik.http.routers.${PROJECT_NAME:-project}-secure.rule=Host(`${PROJECT_NAME:-project}.${DOMAIN:-localhost}`)"
-  
+
   ###> doctrine/doctrine-bundle ###
   database:
     build: ./docker/mysql
@@ -57,7 +57,7 @@ services:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
   ###< doctrine/doctrine-bundle ###
-  
+
   ###> symfony/mailer ###
   mailer:
     image: schickling/mailcatcher
@@ -72,4 +72,5 @@ networks:
 volumes:
   ###> doctrine/doctrine-bundle ###
   db-data:
+      name: ${PROJECT_NAME:-project}-db
 ###< doctrine/doctrine-bundle ###

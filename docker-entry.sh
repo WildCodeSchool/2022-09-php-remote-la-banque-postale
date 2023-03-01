@@ -1,8 +1,14 @@
 #!/bin/sh
-# set -e
+set -e
 
-composer update
-yarn install --force
+composer install \
+    --ignore-platform-reqs \
+    --no-interaction \
+    --no-plugins \
+    --no-scripts \
+    --prefer-dist \
+    --quiet
+yarn install
 yarn build
 
 ## Symfony configuration
