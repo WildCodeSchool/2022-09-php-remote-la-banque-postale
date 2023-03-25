@@ -85,7 +85,6 @@ Some files are used to manage automatic deployments (using tools as Caprover, Do
 
 ## Built With
 
-* [Symfony](https://github.com/symfony/symfony)
 * [GrumPHP](https://github.com/phpro/grumphp)
 * [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 * [PHPStan](https://github.com/phpstan/phpstan)

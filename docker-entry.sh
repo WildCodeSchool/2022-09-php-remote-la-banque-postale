@@ -1,16 +1,6 @@
 #!/bin/sh
 set -e
 
-composer install \
-    --ignore-platform-reqs \
-    --no-interaction \
-    --no-plugins \
-    --no-scripts \
-    --prefer-dist \
-    --quiet
-yarn install
-yarn build
-
 ## Symfony configuration
 if [ ${APP_ENV} != "prod" ]; then
   php bin/console doctrine:database:drop --force --quiet --if-exists --no-interaction
@@ -26,6 +16,11 @@ php bin/console cache:warmup
 
 chmod -R 777 /var/www/var
 chmod -R 777 /var/www/public
+
+# run composer scripts like
+# assets:install public
+# ckeditor:install and so on
+composer run post-install-cmd
 
 ## server config
 php-fpm -D &
